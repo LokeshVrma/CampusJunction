@@ -34,7 +34,7 @@ const registerUser = async (req, res) => {
     tokens.push({ email, token, password: hashedPassword });
 
     // Generate verification link
-    const verificationLink = `http://localhost:5000/api/auth/verify/${token}`;
+    const verificationLink = `${process.env.NODE_ENV === 'production' ? 'https://campusjunction-backend.up.railway.app' : 'http://localhost:5000'}/api/auth/verify/${token}`;
 
     // Set up email options
     const mailOptions = {
