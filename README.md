@@ -31,7 +31,7 @@ CampusJunction is a web application for college students to buy and sell product
 1. **Clone the repository**:
     ```sh
     git clone https://github.com/LokeshVrma/campusjunction-backend.git
-    cd campusjunction-backend
+    cd backend
     ```
 
 2. **Install dependencies**:
@@ -60,7 +60,7 @@ CampusJunction is a web application for college students to buy and sell product
 1. **Clone the repository**:
     ```sh
     git clone https://github.com/LokeshVrma/campusjunction-frontend.git
-    cd campusjunction-frontend
+    cd frontend
     ```
 
 2. **Install dependencies**:
