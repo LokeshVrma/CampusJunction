@@ -31,7 +31,17 @@ const UserSchema = new mongoose.Schema({
     },
     address: {
         type: String
-    }
+    },
+    role: { 
+        type: String, 
+        enum: ['buyer', 'seller', 'admin'], 
+        default: 'buyer' 
+    },
+    orders: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Order' }], 
+    products: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product'
+    }]
 }, { timestamps: true });
 
 
