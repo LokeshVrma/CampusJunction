@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const authRoutes = require('./routes/auth');
+const connectDB = require('./config/db')
 require('dotenv').config();
 
 const app = express();
@@ -14,6 +15,8 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 app.use(express.json());
+
+connectDB();
 
 // Routes
 app.use('/api/auth', authRoutes);
