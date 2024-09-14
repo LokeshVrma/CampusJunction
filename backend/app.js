@@ -1,6 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const authRoutes = require('./routes/auth');
+const marketplaceRoutes = require('./routes/marketplace');
+const connectDB = require('./config/db')
+const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
 const app = express();
@@ -14,9 +17,13 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 app.use(express.json());
+app.use(cookieParser());
+
+connectDB();
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/marketplace', marketplaceRoutes);
 
 app.get('/', (req, res) => {
     res.status(201).json({ message: "Connected to Backend!" });
