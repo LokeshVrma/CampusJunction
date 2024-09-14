@@ -1,23 +1,19 @@
 const mongoose = require('mongoose');
 
-// Define the Category schema
-const CategorySchema = new mongoose.Schema({
-    // Automatically created by MongoDB
-    // _id: mongoose.Schema.Types.ObjectId,
-
-    category_name: {
+const categorySchema = new mongoose.Schema({
+    name: {
         type: String,
         required: true,
-        trim: true
+        unique: true
     },
     description: {
-        type: String,
-        required: false,
-        trim: true
+        type: String
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
     }
-}, { timestamps: true });
+});
 
-// Create a Category model based on the schema
-const Category = mongoose.model('Category', CategorySchema);
-
+const Category = mongoose.model('Category', categorySchema);
 module.exports = Category;

@@ -17,25 +17,7 @@ const productSchema = new mongoose.Schema({
   ],
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
-  variants: [
-    {
-      color: String,
-      size: String,
-      price: Number,
-      stock: Number
-    }
-  ],
-  ratings: {
-    average: Number,
-    reviews: [
-      {
-        userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },  // Link to users.js (reviewer)
-        comment: String,
-        rating: Number,
-        createdAt: { type: Date, default: Date.now }
-      }
-    ]
-  },
+  ratings: { type: Number },
   seller: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },  // Link to users.js (seller)
 });
 
