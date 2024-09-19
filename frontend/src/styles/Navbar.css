@@ -1,119 +1,252 @@
-/* Navbar styles */
-#logo  {
-  color:rgb(21, 16, 16);
+/* Base Navbar Styles (unchanged) */
+#logo {
+  color: rgb(21, 16, 16);
   font-weight: 800;
   font-size: 25px;
   margin: 0;
   text-align: center;
   padding-top: 9px;
 }
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    background-color: #061A40;
-    color: #B9D6F2;
-    padding: 0 10px;
-  }
-  .navbar ul .cart {
-    display: flex;
-    align-items: center;
-    margin-right: 1rem;
-    
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #061A40;
+  color: #B9D6F2;
+  padding: 0 10px;
+  align-items: center;
+  
 }
 
-.cart-icon {
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
+.navbar ul {
+  list-style-type: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  justify-content: center; /*aaaaaaaaaaaaaa*/
+  align-items: center;
 }
+
+.navbar ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar ul li a:hover {
+  color: #0353A4;
+  transition: color 0.3s ease;
+}
+
+.navbar ul .dropdown img.image {
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 0.2em;
+}
+.navbar ul .dropdown {
+  position: relative; /* Ensures the dropdown-menu is positioned relative to this container */
+}
+
+
+.navbar ul .dropdown .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #061A40;
+  list-style: none;
+  padding: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  z-index: 10;
+}
+
+.navbar ul .dropdown .dropdown-menu li a {
+  color: #fff;
+  font-weight: bold;
+  padding: 0.5rem;
+  display: block;
+}
+.navbar ul .dropdown .dropdown-menu .dropdown-divider {
+  height: 2px;
+  width: 100%;
+  background-color: #fff;
+  margin: 0.5rem 0;
+  position: relative;
+  z-index: 11;
+  
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+
+.login-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  margin: 12px;
+  padding: 9px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Styles */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  margin: 3px 0;
+  transition: 0.4s;
+}
+
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 5px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -5px);
+}
+
+.menu-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+ul.auth-links {
+  margin-right: 10px;
+}
+
+.menu-content .navlinks{
+  justify-content: center; /*aaaaaaaaaaaa*/
+  align-items: center;
+  display: flex;
+  
+  gap: 1rem;
+}
+.menu-content .auth-links{
+  justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.menu-content .nav-links,
+.menu-content .auth-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.menu-content .nav-links.open,
+.menu-content .auth-links.open {
+  display: flex;
+}
+.cart-icon {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
 .cart-icon:hover {
   transform: scale(1.2);
 }
 
-  .navbar ul {
-    list-style-type: none;
-    display: flex;
-    gap: 1rem; /* Reduced gap */
-    margin: 0;
-    align-items: center;
+
+@media (max-width: 768px) {
+
+  .navbar ul,
+  .navbar .login-button {
+      display: none;
   }
-  
-  .navbar ul li {
-    position: center;
+
+  .menu-toggle {
+      display: flex;
   }
-  
-  .navbar ul li a {
-    color: white;
-    text-decoration: none;
-    
-    
+
+  .menu-content {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      background-color: #061A40;
+      width: 100%;
+      text-align: center;
   }
-  .navbar ul li a:hover{
-    color: #0353A4;
-    transition: color 0.3s ease;
+
+  .menu-content.open {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+       width: 100%;
   }
-  
-  .navbar ul .dropdown img.image {
-    cursor: pointer;
-    border-radius: 50%;
-    padding: 0.2em;
-  }
-  
-  .navbar ul .dropdown .dropdown-menu {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color:#061A40 ;
-    border: 1px solid #061A40;
-    list-style : none;
-    padding : 0.5rem;
+  .nav-links {
+    justify-content: center;
+    width: 100%; 
     display: flex;
     flex-direction: column;
-    width: 150px;
-    z-index: 10;
+    align-items: center;
+      /**/
   }
-  
-  .navbar ul .dropdown .dropdown-menu li a {
-    color: #fff;
-    font-weight: bold;
-  
-    padding: 0.5rem;
-    display: block;
+  .auth-links{
+    justify-content: center;
+    width: 100%; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
   }
-  
-  
-  .navbar ul .dropdown .dropdown-menu .dropdown-divider {
-    height: 2px;
-    width: 100%;
-    background-color: #fff;
-    margin: 0.5rem 0;
-    position: relative;
-    z-index: 11;
-    
+  .nav-links li,
+  .auth-links li {
+      margin-bottom: 1rem ;
   }
-  
-  .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1;
-  }
-  .login-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    margin:12px;
-    padding: 9px 10px;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 5px;
-    text-transform: uppercase;
+
+ .cart {
+      display: flex ;
+      justify-content: center;
+      margin-top : 1rem ;
+      padding: 0 10px;
+ }
+ .cart-icon {
+  width: 24px;
+  height: 24px;
 }
 
-.login-button:hover {
-    background-color: #0056b3;
+.dropdown img .image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-top: 1rem;
+}
+}
+
+.menu-item{
+  align-items: center;
 }
