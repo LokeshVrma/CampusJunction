@@ -1,0 +1,65 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, #006DAA, #B9D6F2, #006DAA);
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ 
+  }
+/* Search Bar Styles */
+.search-bar {
+    width: 500px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+
+/* Search Button */
+.search-button {
+  padding: 12px 20px;
+margin-top: 0;
+  margin-right: 169px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 15%;
+}
+
+.search-button:hover{
+    background-color: #0056b3;
+}
+
+  /* Flex container for search and filter */
+  .search-filter-container {
+    
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+  }
+  
+  /* Style for the filter section */
+  .filter-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .price-filter input {
+    width: 120px;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+ /* Price Filter Styles */
+.price-filter {
+    display: flex;
+    align-items: center;
+  }

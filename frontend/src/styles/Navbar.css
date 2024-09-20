@@ -1,168 +1,255 @@
-/* Base Navbar Styles */
-#logo {
-  color: rgb(21, 16, 16);
-  font-weight: 800;
-  font-size: 25px;
-  margin: 0;
-  text-align: left;
-  padding-top: 9px;
-}
-
+/* Navbar Container */
 .navbar {
   display: flex;
   justify-content: space-between;
-  background-color: #061A40;
-  color: #B9D6F2;
-  padding: 0 10px;
+  align-items: center;
+  background-color: #24292e61;
+  color: white;
+  position: relative;
+  font-family: "Poppins", sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
+  padding: 10px 20px;
+}
+
+/* Modern Logo */
+.navbar-logo a {
+  font-size: 28px;
+  font-weight: 700;
+  color: #f6f8fa;
+  text-decoration: none;
+  display: flex;
   align-items: center;
 }
 
-.navbar .logo-container {
-  flex: 1;
-  text-align: left;
+.navbar-logo span {
+  color: #ffeb3b;
+  font-weight: 600;
+  margin-left: 4px;
 }
 
-.navbar .navlinks-container {
-  flex: 2;
+/* Navigation Links Container */
+.nav-links-container {
+  flex-grow: 1;
   display: flex;
   justify-content: center;
 }
 
-.navbar .auth-links-container {
-  flex: 1;
+/* Navigation Links */
+.nav-links {
+  list-style: none;
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  gap: 30px;
 }
 
-.navbar ul {
-  list-style-type: none;
-  display: flex;
-  gap: 1rem;
-  margin: 0;
-  align-items: center;
-}
-
-.navbar ul li a {
+.nav-links li a {
   color: white;
   text-decoration: none;
-  transition: color 0.3s ease;
+  font-size: 20px;
+  padding: 10px 15px;
+  font-weight: 700;
 }
 
-.navbar ul li a:hover {
-  color: #0353A4;
+.nav-links li a:hover {
+  color: #24292e;
+  border-radius: 5px;
+  transition: color ease-in 0.3s;
 }
 
-/* Dropdown styles */
-.navbar .dropdown img.image {
-  cursor: pointer;
-  border-radius: 50%;
-  padding: 0.2em;
-}
-
-.navbar .dropdown {
-  position: relative;
-}
-
-.navbar .dropdown .dropdown-menu {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background-color: #061A40;
-  list-style: none;
-  padding: 0.4rem;
+/* Cart and Profile Wrapper */
+.cart-profile-wrapper {
   display: flex;
-  flex-direction: column;
-  width: 150px;
-  z-index: 10;
+  align-items: center;
+  gap: 15px; /* Adjust space between cart and profile */
 }
 
-.navbar .dropdown .dropdown-menu li a {
-  color: #fff;
-  font-weight: bold;
-  padding: 0.5rem;
+/* Cart Icon */
+.cart {
+  list-style: none;
 }
 
-.navbar .dropdown .dropdown-divider {
-  height: 2px;
-  background-color: #fff;
-  margin: 0.5rem 0;
-}
-
-/* Cart icon */
 .cart-icon {
-  width: 30px;
-  height: 30px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+/* Profile Image */
+.profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
   cursor: pointer;
   transition: transform 0.3s ease;
 }
 
-.cart-icon:hover {
-  transform: scale(1.2);
+.profile-image:hover {
+  transform: scale(1.1);
 }
 
-/* Button */
-.login-button {
-  background-color: #007bff;
-  color: white;
+/* Dropdown Menu */
+.dropdown-menu {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 10px;
+  z-index: 1000;
+}
+
+.dropdown-menu li {
+  padding: 10px;
+  text-align: center;
+}
+
+.dropdown-menu li a {
+  color: #24292e;
+  text-decoration: none;
+}
+
+.dropdown-menu li a:hover {
+  color: #102696;
+  text-decoration: none;
+  transition: color ease-in 0.3s;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background-color: #ccc;
+  margin: 8px 0;
+}
+
+/* Dropdown Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 500;
+}
+
+/* Join Now Button */
+.auth-section {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+/* Join Now Button Styles */
+.join-now-button {
+  padding: 10px 20px;
+  background-color: #ffeb3b;
+  color: #24292e;
   border: none;
-  margin: 12px;
-  padding: 9px 10px;
-  font-size: 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
   cursor: pointer;
-  border-radius: 5px;
-  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
 }
 
-.login-button:hover {
-  background-color: #0056b3;
+
+/* Hide desktop join now button on small screens */
+.desktop-join-now {
+  display: none;
 }
 
-/* Responsive Styles */
+/* Show mobile join now button when user is not authenticated */
+.mobile-join-now {
+  display: none;
+}
+
+
+/* Show cart and profile for logged-in users */
+.auth-logged-in .mobile-auth-section {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  align-items: center;
+}
+
+/* Hide mobile join now button for logged-in users */
+.auth-logged-in .mobile-join-now {
+  display: none;
+}
+
+/* Hamburger Menu */
 .menu-toggle {
   display: none;
   flex-direction: column;
   cursor: pointer;
+  gap: 4px;
+  z-index: 1001;
+  position: relative;
 }
 
 .menu-toggle span {
   width: 25px;
   height: 3px;
-  background-color: #fff;
-  margin: 3px 0;
-  transition: 0.4s;
+  background-color: white;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.menu-toggle.active span:nth-child(1) {
-  transform: rotate(-45deg) translate(-5px, 5px);
+/* Animation for the X */
+.menu-toggle.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
 }
 
-.menu-toggle.active span:nth-child(2) {
+.menu-toggle.open span:nth-child(2) {
   opacity: 0;
 }
 
-.menu-toggle.active span:nth-child(3) {
-  transform: rotate(45deg) translate(-5px, -5px);
+.menu-toggle.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
 }
 
-.menu-content {
+
+/* Mobile Menu Links */
+.nav-links.open {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #1a1d21;
+  padding: 20px 0;
+  position: absolute;
+  top: 50px;
+  left: 0;
   width: 100%;
-  justify-content: space-between;
-  align-items: center;
 }
 
-.navlinks,
-.auth-links {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
+.nav-links li {
+  text-align: center;
 }
 
+/* Join Now Button - Default hidden for logged-in state on mobile */
+.mobile-join-now {
+  display: none;
+}
+
+.desktop-join-now {
+  display: block;
+}
+
+/* Auth Section (Cart and Profile) for Mobile */
+.mobile-auth-section {
+  display: none; /* Hidden by default */
+  flex-direction: column; /* Stack items on mobile */
+  align-items: center;
+  gap: 10px;
+}
+
+/* Responsive Mobile Styles */
 @media (max-width: 768px) {
-  .navbar ul,
-  .login-button {
+  .nav-links {
     display: none;
   }
 
@@ -170,52 +257,37 @@
     display: flex;
   }
 
-  .menu-content {
-    display: none;
+  .nav-links.open {
+    display: flex;
     flex-direction: column;
+    gap: 20px;
+    background-color: #1a1d21;
+    padding: 20px 0;
     position: absolute;
-    top: 60px;
-    right: 0;
-    background-color: #061A40;
+    top: 50px;
+    left: 0;
     width: 100%;
-    text-align: center;
+  }
+  .nav-links li a {
+    color: white;
   }
 
-  .menu-content.open {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  /* Hide desktop join now button on small screens */
+  .desktop-join-now {
+    display: none;
   }
 
-  .nav-links,
-  .auth-links {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    margin-top: 1rem;
+  /* For logged-in users, hide "Join Now" and show "auth section" */
+  .auth-logged-in .mobile-join-now {
+    display: none; /* Hide Join Now on mobile when logged in */
   }
 
-  .nav-links li,
-  .auth-links li {
-    margin-bottom: 1rem;
+  .auth-logged-in .mobile-auth-section {
+    display: flex; /* Show cart and profile on mobile when logged in */
   }
 
-  .cart {
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
-    padding: 0 10px;
-  }
-
-  .cart-icon {
-    width: 24px;
-    height: 24px;
-  }
-
-  .dropdown img.image {
-    width: 50px;
-    height: 50px;
-    margin-top: 1rem;
+  /* Show join now button inside mobile menu */
+  .mobile-join-now {
+    display: block;
   }
 }

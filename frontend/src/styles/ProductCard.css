@@ -1,0 +1,233 @@
+body{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #006DAA, #B9D6F2, #006DAA);
+    font-family:'Times New Roman', Times, serif;
+    margin: 0;
+}  
+
+.container{
+    display: flex;
+    height: 100vh;
+  
+    margin: 0 auto;
+    overflow: hidden;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.main-content{
+    flex: 1;
+   /* padding: 20px;  Add padding to ensure no overlap */
+    overflow-y: auto; /* Enable scrolling if content exceeds height */
+    background-color: #f9f9f9; /* Background color for the content area */
+    height: 100%;
+}
+
+.filter-section{
+    margin-bottom: 20px;
+}
+.price-filter input{
+    width: 100px;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.product-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+.product-card {
+    background: #b9d6f2;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    font-size: 18px;
+    font-weight: 600;
+    width: 300px;
+    height: 450px;
+   
+  
+  }
+
+.product-name {
+  text-decoration: none;
+  color: #007bff;
+  overflow-wrap: break-word; /* Allow text to wrap */
+  word-wrap: break-word; /* Legacy support */
+  white-space: normal; /* Allow text to wrap */
+  margin: 0; /* Remove default margin */
+}
+
+.product-name:hover {
+  color: #006DAA;
+}
+
+.add-to-cart {
+    /* background-color: #007bff; */
+    background-color: #28a745;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 30%;
+  }
+  
+  .add-to-cart:hover {
+    /* background-color: #0056b3; */
+    background-color: #218838;
+  }
+.product-card{
+    font-size: 18px;
+    font-weight: 700;
+}
+  .product-card img{
+    width: 100%;
+    height: auto;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  .product-card:hover{
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  }
+
+.availability {
+  font-size: 14px;
+}
+
+.in-stock {
+  color: #28a745;
+}
+
+.out-of-stock {
+  color: #dc3545;
+}
+
+.wishlist-button {
+  background-color: #f8f9fa;
+  color: #007bff;
+  border: 1px solid #007bff;
+  padding: 10px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.wishlist-button:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+/* ProductCard.css */
+
+.product-card {
+  /* existing styles */
+}
+
+.star-rating {
+  display: inline-flex;
+  font-size: 20px;
+  color: #f39c12; /* Gold color for filled stars */
+}
+
+.star {
+  margin: 0 2px;
+  color: #ddd; /* Light grey color for empty stars */
+}
+
+.star.filled {
+  color: #f39c12; /* Gold color for filled stars */
+}
+
+.star.half-filled {
+  position: relative;
+}
+
+.star.half-filled::after {
+  content: "★";
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #f39c12; /* Gold color for half-filled stars */
+  overflow: hidden;
+  width: 50%; /* Half of the star */
+}
+
+
+/* Pagination styling */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  align-items: center;
+  margin-bottom: 25px;
+
+}
+
+.page-button {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 8px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-button.active {
+  background-color: #007bff;
+  color: white;
+  border: 1px solid #007bff;
+}
+
+.page-button:hover:not(.active) {
+  background-color: #e0e0e0;
+}
+
+.page-button.disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.page-button:disabled {
+  pointer-events: none;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 1024px) {
+  .container {
+      width: 90%; /* Adjust width for smaller screens */
+      height: auto; /* Allow container height to adjust */
+  }
+
+  .product-grid {
+      grid-template-columns: repeat(2, 1fr); /* Reduce columns for tablet */
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+      flex-direction: column; /* Stack elements on top of each other */
+      height: auto; /* Container adjusts to fit content */
+  }
+
+  .product-grid {
+      grid-template-columns: 1fr; /* Single column on mobile */
+  }
+}

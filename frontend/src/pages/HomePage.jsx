@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Navbar from '../components/Navbar'
+import Footer from '../components/Footer';
 
 function HomePage() {
   const [message, setMessage] = useState('');
@@ -26,6 +27,7 @@ function HomePage() {
       <Navbar/>
       <h2>Home Page</h2>
       <p>{message}</p>
+      <Footer />
     </div>
   );
 }
