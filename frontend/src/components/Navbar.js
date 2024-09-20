@@ -4,7 +4,7 @@ import "../styles/Navbar.css";
 function Navbar() {
   const is_authenticated = true;
   const [dropdownVisible, setDropdownVisible] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false); // State to toggle mobile menu
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
@@ -34,29 +34,17 @@ function Navbar() {
       </div>
 
       <div className={`menu-content ${menuOpen ? "open" : ""}`}>
-       <div >
-       <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
-          <li>
-            <a href="#">Home</a>
-          </li>
-          <li>
-            <a href="#">Hire a Tutor</a>
-          </li>
-          <li>
-            <a href="#">Lost and Found</a>
-          </li>
+        <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Hire a Tutor</a></li>
+          <li><a href="#">Lost and Found</a></li>
         </ul>
-         </div>
-         <div>
+
         {is_authenticated ? (
-          <ul className={`auth-links ${menuOpen ? "open" : " "}`}>
+          <ul className={`auth-links ${menuOpen ? "open" : ""}`}>
             <li className="cart">
               <a href="/cart">
-                <img
-                  src="/shopping-cart.png"
-                  alt="cart"
-                  className="cart-icon"
-                />
+                <img src="/shopping-cart.png" alt="cart" className="cart-icon" />
               </a>
             </li>
             <li className="dropdown">
@@ -68,21 +56,14 @@ function Navbar() {
               />
               {dropdownVisible && (
                 <ul className="dropdown-menu">
-                  <li>
-                    <a href="#">Profile</a>
-                  </li>
-                  <li>
-                    <a href="#">Settings</a>
-                  </li>
+                  <li><a href="#">Profile</a></li>
+                  <li><a href="#">Settings</a></li>
                   <li className="dropdown-divider"></li>
-                  <li>
-                    <a href="#">Logout</a>
-                  </li>
+                  <li><a href="#">Logout</a></li>
                 </ul>
               )}
             </li>
           </ul>
-          
         ) : (
           <button
             className="login-button"
@@ -91,13 +72,10 @@ function Navbar() {
             JOIN Now
           </button>
         )}
-</div>
-        {dropdownVisible && (
-          <div className="overlay" onClick={hideDropdown}></div>
-        )}
+        {dropdownVisible && <div className="overlay" onClick={hideDropdown}></div>}
       </div>
     </nav>
   );
 }
 
-export default Navbar;
+export default Navbar;

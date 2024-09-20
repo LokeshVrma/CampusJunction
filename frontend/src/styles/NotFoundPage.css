@@ -1,0 +1,69 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif; /* Modern font */
+}
+
+.not-found-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(to right, #f8f9fa, #e2e6ea); /* Gradient background */
+    color: #343a40;
+}
+
+.not-found-content {
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.not-found-title {
+    font-size: 8rem; /* Larger title */
+    font-weight: bold;
+    margin: 0;
+    color: #dc3545;
+    animation: bounce 1s infinite; /* Bouncing animation */
+}
+
+.not-found-message {
+    font-size: 1.5rem;
+    margin: 20px 0;
+    opacity: 0.8;
+    margin-bottom: 50px;
+}
+
+.not-found-link {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 30px; /* Rounded button */
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.3s; /* Added transform for hover */
+    box-shadow: 0 4px 20px rgba(0, 123, 255, 0.2);
+}
+
+.not-found-link:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px); /* Slight lift effect on hover */
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
