@@ -1,0 +1,136 @@
+.side-menu {
+    width: 250px;
+    background: linear-gradient(135deg, #006DAA, #B9D6F2);
+    padding: 20px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+    height: 100%;
+    box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+.side-menu h2 {
+    margin-top: 0;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.side-menu ul {
+    padding: 0;
+    margin: 20px 0;
+    list-style-type: none;
+}
+
+.side-menu li {
+    margin: 15px 0;
+    transition: transform 0.3s ease-in-out;
+}
+
+.side-menu li:hover {
+    transform: translateX(10px);
+}
+
+.side-menu a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 20px;
+    display: block;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+    font-weight: 600;
+    text-align: center;
+}
+
+.side-menu a:hover {
+    background: rgba(255, 255, 255, 0.3);
+    color: #333;
+} 
+
+
+/* Adding icons to menu items */
+.side-menu ul li a::before {
+    font-family: 'FontAwesome'; /* Ensure FontAwesome is included in your project */
+    content: "\f007"; /* Example icon code, adjust as needed */
+    display: inline-block;
+    margin-right: 10px;
+}
+
+/* User Profile Section */
+.user-profile {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.user-profile img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    background: #fff; /* Ensure contrast for the image */
+}
+
+.user-profile .user-name {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Recent Activity Section */
+.recent-activity {
+    margin-top: 20px;
+}
+
+.recent-activity h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.recent-activity ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.recent-activity ul li {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #007bff;
+}
+
+.recent-activity ul li:hover {
+    color: #0056b3;
+}
+
+/* Popular Items Section */
+.popular-items ul li a {
+    color: #ffffff;
+    font-size: 16px;
+    transition: color 0.3s ease;
+   
+}
+
+.popular-items h3{
+    text-align: center;
+    color: #ffffff;
+}
+.popular-items ul li a:hover {
+    color: #000000;
+}
+
+/* Notifications Section */
+.notifications ul li a {
+    color: #ffffff;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.notifications ul li a:hover {
+    color: #000000;
+}
