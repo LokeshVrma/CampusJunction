@@ -1,24 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer';
+import { UserContext } from '../contexts/UserContext';
 
 function HomePage() {
   const [message, setMessage] = useState('');
+  const { user, loading } = useContext(UserContext);
 
   useEffect(() => {
-    document.title = 'CampusJunction';
 
-    const fetchMessage = async () => {
+    const fetchUser = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/`);
+        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/user`,{
+          withCredentials: true,
+        });
         setMessage(response.data.message);
       } catch (error) {
         console.error('Error fetching message:', error);
       }
     };
 
-    fetchMessage();
+    fetchUser();
   }, []);
 
   return (
@@ -26,7 +29,10 @@ function HomePage() {
     <div>
       <Navbar/>
       <h2>Home Page</h2>
-      <p>{message}</p>
+      <p>
+        {user?.name}
+        {user?.email}
+      </p>
       <Footer />
     </div>
   );

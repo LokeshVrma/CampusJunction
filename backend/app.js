@@ -8,7 +8,7 @@ const authRoutes = require('./routes/auth');
 const marketplaceRoutes = require('./routes/marketplace');
 const cartRoutes = require('./routes/cart');
 const categoryRoutes = require('./routes/categories');
-
+const userRoutes = require('./routes/users')
 
 require('dotenv').config();
 
@@ -19,6 +19,7 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 app.use(cors({
     origin: 'http://localhost:3000',
+    credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
@@ -39,6 +40,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/marketplace', marketplaceRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/api/categories', categoryRoutes);
+app.use('/api/user', userRoutes)
 
 app.get('/', (req, res) => {
     res.status(201).json({ message: "Connected to Backend!" });

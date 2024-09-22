@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/RegisterPage.css'; // Assuming you have a CSS file
+import '../styles/RegisterPage.css'; 
 import Branding from '../components/Branding';
+import { UserContext } from '../contexts/UserContext';
+import axios from 'axios';
 
 const LoginPage = () => {
     const [formData, setFormData] = useState({
@@ -10,6 +12,8 @@ const LoginPage = () => {
     });
     const [errors, setErrors] = useState({});
     const [formSubmitted, setFormSubmitted] = useState(false);
+    const [backendError, setBackendError] = useState('');
+    const { setUserContext } = useContext(UserContext);
     const navigate = useNavigate();
 
     const validateForm = () => {
@@ -36,12 +40,41 @@ const LoginPage = () => {
         setErrors({ ...errors, [name]: '' });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (validateForm()) {
-            setFormSubmitted(true);
+            try {
+                // Make a POST request to the backend
+                const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/auth/login`, {
+                    email: formData.email,
+                    password: formData.password,
+                }, {
+                    withCredentials: true, // Ensures cookies are sent with the request
+                });
+    
+                // Set form submitted to true for showing success message
+                setFormSubmitted(true);
+    
+                // Optionally fetch user info to update user context
+                const userResponse = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/user`, {
+                    withCredentials: true, // Send cookie to authenticate
+                });
+                // Assuming user info is in the response
+                setUserContext(userResponse.data);
+    
+                // Redirect to homepage or dashboard after login
+                navigate('/');
+            } catch (error) {
+                // Handle errors (e.g., wrong credentials)
+                if (error.response && error.response.data) {
+                    setBackendError(error.response.data.message);
+                } else {
+                    setBackendError('An error occurred. Please try again.');
+                }
+            }
         }
     };
+    
 
     useEffect(() => {
         if (formSubmitted) {
@@ -87,6 +120,8 @@ const LoginPage = () => {
                                 />
                                 {errors.password && <p className="error">{errors.password}</p>}
                             </div>
+
+                            {backendError && <p className="error">{backendError}</p>}
 
                             <div>
                                 <button onClick={handleSubmit} style={{ marginLeft: "75px", width: "50%" }}>

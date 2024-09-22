@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../styles/Navbar.css";
+import { UserContext } from "../contexts/UserContext";
 
 function Navbar() {
-  const is_authenticated = false
+  const { user, loading, logout } = useContext(UserContext); // Destructure logout function from context
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -31,8 +32,13 @@ function Navbar() {
     };
   }, []);
 
+  const handleLogout = async () => {
+    await logout(); // Call the logout function from the context
+    window.location.href = "/login"; // Redirect to the login page after logout
+  };
+
   return (
-    <nav className={`navbar ${is_authenticated ? "auth-logged-in" : "auth-logged-out"}`}>
+    <nav className={`navbar ${user ? "auth-logged-in" : "auth-logged-out"}`}>
       <span id="logo" className="navbar-logo">
         <a href="#">🎓 Campus<span>Junction</span></a>
       </span>
@@ -43,7 +49,7 @@ function Navbar() {
           <li><a href="#">Hire Tutor</a></li>
           <li><a href="#">Lost & Found</a></li>
           <li><a href="#">About us</a></li>
-          {!is_authenticated && (
+          {!user && (
             <li className="mobile-join-now">
               <button className="join-now-button" onClick={() => (window.location.href = "/login")}>
                 JOIN NOW
@@ -58,19 +64,19 @@ function Navbar() {
       </div>
 
       <div className="auth-section">
-        {is_authenticated ? (
+        {!loading && user ? (
           <div className="cart-profile-wrapper">
             <a href="/cart" className="cart">
               <img src="/shopping-cart.png" alt="cart" className="cart-icon" />
             </a>
             <div className="profile" onClick={toggleDropdown}>
-              <img className="profile-image" src="https://placehold.co/50x50" alt="profile" />
+              <img className="profile-image" src={user.photo_url || "https://placehold.co/50x50"} alt="profile" />
               {dropdownVisible && (
                 <ul className="dropdown-menu show">
-                  <li><a href="#">Name</a></li>
+                  <li><a href="#">Profile</a></li>
                   <li><a href="#">Settings</a></li>
                   <div className="dropdown-divider"></div>
-                  <li><a href="#">Logout</a></li>
+                  <li><a href="#" onClick={handleLogout}>Logout</a></li> {/* Logout option */}
                 </ul>
               )}
             </div>
