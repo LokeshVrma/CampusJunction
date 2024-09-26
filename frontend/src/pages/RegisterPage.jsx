@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/RegisterPage.css'; // Assuming you have a CSS file
+import '../styles/auth.css';
 import Branding from '../components/Branding';
+import axios from 'axios';
 
 const RegisterPage = () => {
     const [step, setStep] = useState(1);
@@ -19,6 +20,7 @@ const RegisterPage = () => {
     });
     const [errors, setErrors] = useState({});
     const [formSubmitted, setFormSubmitted] = useState(false);
+    const [backendError, setBackendError] = useState('');
 
     const validateStep = (stepToValidate = step) => {
         const stepErrors = {};
@@ -78,17 +80,43 @@ const RegisterPage = () => {
         setErrors({ ...errors, [name]: '' });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (validateStep()) {
-            setFormSubmitted(true);
+            const formDataToSend = new FormData();
+            formDataToSend.append('email', formData.email);
+            formDataToSend.append('name', formData.name);
+            formDataToSend.append('password', formData.password);
+            formDataToSend.append('photo_url', formData.photo); // Corrected
+            formDataToSend.append('phone_num', formData.phone); // Corrected
+            formDataToSend.append('address', formData.address);
+            formDataToSend.append('college_name', formData.collegeName); // Corrected
+            formDataToSend.append('college_uid', formData.collegeUID);
+            formDataToSend.append('college_uid_photo_url', formData.idCardPhoto); // Corrected
+    
+            try {
+                const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/auth/register`, formDataToSend, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data', // Important for file uploads
+                    },
+                });
+                setFormSubmitted(true);
+            } catch (error) {
+                if (error.response && error.response.data) {
+                    setBackendError(error.response.data.message);
+                } else {
+                    setBackendError('An error occurred. Please try again.');
+                }
+            }
         }
     };
+    
+    
 
     useEffect(() => {
         if (formSubmitted) {
             const timer = setTimeout(() => {
-                navigate('/'); // Redirect to the home page
+                navigate('/login'); // Redirect to the home page
             }, 1000);
             return () => clearTimeout(timer);
         }
@@ -170,12 +198,11 @@ const RegisterPage = () => {
                             <div className="form-step">
                                 <div className="form-group">
                                     <label htmlFor="photo">Upload Photo:</label>
-                                    <input 
-                                    //   style={{display: "none"}}
+                                    <input
                                         type="file"
-                                        id="photo"
                                         name="photo"
-                                        onChange={handleChange}
+                                        onChange={(e) => setFormData({ ...formData, photo: e.target.files[0] })}
+                                        required
                                     />
                                     {errors.photo && <p className="error">{errors.photo}</p>}
                                 </div>
@@ -243,12 +270,15 @@ const RegisterPage = () => {
                                     <label htmlFor="idCardPhoto">ID Card Photo:</label>
                                     <input
                                         type="file"
-                                        id="idCardPhoto"
                                         name="idCardPhoto"
-                                        onChange={handleChange}
+                                        onChange={(e) => setFormData({ ...formData, idCardPhoto: e.target.files[0] })}
+                                        required
                                     />
                                     {errors.idCardPhoto && <p className="error">{errors.idCardPhoto}</p>}
                                 </div>
+
+                                {backendError && <p className="error">{backendError}</p>}
+                                
                                 <div className='two-button'>
                                     <button onClick={prevStep}>Back</button>
                                     <button onClick={handleSubmit}>Sign Up</button>

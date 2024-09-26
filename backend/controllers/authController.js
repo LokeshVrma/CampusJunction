@@ -3,39 +3,65 @@ const jwt = require('jsonwebtoken');     // Module for JSON Web Tokens
 const bcrypt = require('bcryptjs');      // Module for hashing passwords
 const User = require('../models/User'); // Module for User model
 require('dotenv').config();              // Load environment variables from .env file
+const cloudinary = require('cloudinary').v2;
+const fs = require('fs');
 
 
 // Handler to register a new user
+
 const registerUser = async (req, res) => {
-    const { email, name, password, photo_url, phone_num, college_uid, college_uid_photo_url, college_name, address } = req.body;
-  
-    // Validate input
-    if (!email || !name || !password) {
-      return res.status(400).json({ message: 'Email, Password and name are required' });
-    }
-  
-    // Hash the user's password
-    const hashedPassword = await bcrypt.hash(password, 10);
-  
-    // Create a new User object with default role as 'buyer'
-    const user = new User({
-      email,
-      name,
-      password: hashedPassword,
-      photo_url,
-      phone_num,
-      college_uid,
-      college_uid_photo_url,
-      college_name,
-      address,
-    });
-  
-    try {
+  const { email, name, password, phone_num, college_uid, college_name, address } = req.body;
+  const files = req.files; // Get uploaded files (photo_url, college_uid_photo_url)
+
+  if (!email || !name || !password) {
+    return res.status(400).json({ message: 'Email, Password, and Name are required.' });
+}
+
+  // Handle file uploads (ensure files are uploaded and accessible)
+  if (!files || !files.photo || !files.college_uid_photo) {
+    return res.status(400).json({ message: 'Photo and College UID Photo are required.' });
+  }
+
+  try {
+      // Hash the user's password
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      // Check if both images (profile photo and college ID) are provided
+      if (!files || files.length < 2) {
+          return res.status(400).json({ message: 'Both profile photo and college UID photo are required' });
+      }
+
+      // Upload images to Cloudinary
+      const [photoFile, collegeUidFile] = files; // Assumes 2 images
+      const photoUpload = await cloudinary.uploader.upload(photoFile.path);
+      const collegeUidUpload = await cloudinary.uploader.upload(collegeUidFile.path);
+
+      // Delete local files after uploading to Cloudinary
+      [photoFile.path, collegeUidFile.path].forEach(file => {
+          fs.unlink(file, (err) => {
+              if (err) console.error('Error deleting local file:', err);
+          });
+      });
+
+      // Create a new User object
+      const user = new User({
+          email,
+          name,
+          password: hashedPassword,
+          photo_url: photoUpload.secure_url, // Uploaded profile photo URL
+          phone_num,
+          college_uid,
+          college_uid_photo_url: collegeUidUpload.secure_url, // Uploaded college ID photo URL
+          college_name,
+          address,
+          role: 'buyer' // Default role
+      });
+
       await user.save();
       res.status(201).json({ message: 'User created successfully' });
-    } catch (err) {
+  } catch (err) {
       res.status(500).json({ message: 'Error creating user', err });
-    }
+  }
 };
 
 // Function to update a user's role to 'seller'

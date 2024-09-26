@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/RegisterPage.css'; 
+import '../styles/auth.css'; 
 import Branding from '../components/Branding';
 import { UserContext } from '../contexts/UserContext';
 import axios from 'axios';
