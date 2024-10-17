@@ -40,12 +40,12 @@ function Navbar() {
   return (
     <nav className={`navbar ${user ? "auth-logged-in" : "auth-logged-out"}`}>
       <span id="logo" className="navbar-logo">
-        <a href="#">🎓 Campus<span>Junction</span></a>
+        <a href="/">🎓 Campus<span>Junction</span></a>
       </span>
 
       <div className="nav-links-container">
         <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
-          <li><a href="#">Home</a></li>
+          <li><a href="/">Home</a></li>
           <li><a href="#">Hire Tutor</a></li>
           <li><a href="#">Lost & Found</a></li>
           <li><a href="#">About us</a></li>
@@ -73,7 +73,7 @@ function Navbar() {
               <img className="profile-image" src={user.photo_url || "https://placehold.co/50x50"} alt="profile" />
               {dropdownVisible && (
                 <ul className="dropdown-menu show">
-                  <li><a href="#">Profile</a></li>
+                  <li><a href={`/profile`}>Profile</a></li>
                   <li><a href="#">Settings</a></li>
                   <div className="dropdown-divider"></div>
                   <li><a href="#" onClick={handleLogout}>Logout</a></li> {/* Logout option */}

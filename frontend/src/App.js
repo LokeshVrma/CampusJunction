@@ -11,7 +11,9 @@ import NotFoundPage from './pages/NotFoundPage';
 import CreateProductPage from './pages/CreateProductPage';
 import EditProductPage from './pages/EditProductPage';
 import CartPage from './pages/CartPage';
-import ProtectedRoute from './components/ProtectedRoute'; // Import the ProtectedRoute
+import UserProfilePage from './pages/UserProfilePage'
+import ProtectedRoute from './components/ProtectedRoute';
+
 
 import { UserProvider } from './contexts/UserContext';
 
@@ -19,7 +21,7 @@ function App() {
   return (
     <UserProvider>
       <Router>
-        <div className="App">
+        <div>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
@@ -29,6 +31,8 @@ function App() {
             <Route path="/cart" element={<ProtectedRoute element={<CartPage />} />} />
             <Route path="/products/create" element={<ProtectedRoute element={<CreateProductPage />} />} />
             <Route path="/products/edit/:id" element={<ProtectedRoute element={<EditProductPage />} />} />
+            {/* <Route path="/profile" element={<ProtectedRoute element={<UserProfilePage />} />} /> */}
+            <Route path='/profile' element={<UserProfilePage />} />
             
             {/* Public Routes */}
             <Route path="/products" element={<ProductListingPage />} />

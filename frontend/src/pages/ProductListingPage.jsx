@@ -4,6 +4,8 @@ import ProductCard from '../components/ProductCard';
 import Sidebar from '../components/Sidebar';
 import SearchBar from '../components/SearchBar';
 import '../styles/ProductCard.css';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer'
 
 function ProductListingPage() {
   const [searchQuery, setSearchQuery] = useState('');  // For search term
@@ -72,7 +74,11 @@ function ProductListingPage() {
   };
 
   return (
+    <div>
+
+< Navbar />
     <div className="container">
+      
       <Sidebar />
       <main className="main-content">
         {/* Search and Filter Bar */}
@@ -117,6 +123,9 @@ function ProductListingPage() {
           </button>
         </div>
       </main>
+      
+    </div>
+    < Footer />
     </div>
   );
 }
