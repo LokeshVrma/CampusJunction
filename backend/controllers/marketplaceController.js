@@ -1,6 +1,6 @@
 require('dotenv').config();
-const Product = require('../models/Product')
-const Category = require('../models/Categories');
+const Product = require('../models/product')
+const Category = require('../models/categories');
 const cloudinary = require('cloudinary').v2;
 const fs = require('fs');
 
