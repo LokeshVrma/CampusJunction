@@ -1,6 +1,6 @@
 require('dotenv').config();
 const Cart = require('../models/Cart');
-const Product = require('../models/Product')
+const Product = require('../models/product')
 
 // Helper function to calculate total amount
 const calculateTotalAmount = (items) => {
