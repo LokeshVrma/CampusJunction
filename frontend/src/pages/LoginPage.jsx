@@ -44,28 +44,21 @@ const LoginPage = () => {
         e.preventDefault();
         if (validateForm()) {
             try {
-                // Make a POST request to the backend
                 const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/auth/login`, {
                     email: formData.email,
                     password: formData.password,
                 }, {
-                    withCredentials: true, // Ensures cookies are sent with the request
+                    withCredentials: true,
                 });
     
-                // Set form submitted to true for showing success message
                 setFormSubmitted(true);
     
-                // Optionally fetch user info to update user context
                 const userResponse = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/user`, {
-                    withCredentials: true, // Send cookie to authenticate
+                    withCredentials: true,
                 });
-                // Assuming user info is in the response
                 setUserContext(userResponse.data);
-    
-                // Redirect to homepage or dashboard after login
                 navigate('/');
             } catch (error) {
-                // Handle errors (e.g., wrong credentials)
                 if (error.response && error.response.data) {
                     setBackendError(error.response.data.message);
                 } else {
@@ -75,67 +68,64 @@ const LoginPage = () => {
         }
     };
     
-
     useEffect(() => {
         if (formSubmitted) {
             const timer = setTimeout(() => {
-                navigate('/'); // Redirect to the home page
+                navigate('/');
             }, 1000);
             return () => clearTimeout(timer);
         }
     }, [formSubmitted, navigate]);
 
     return (
-        <div className="page-container">
-            <div className="intro-container">
+        <div className="auth-page">
+            <div className="auth-intro">
                 <h1>Welcome to {Branding()}</h1>
                 <p>Please log in to continue.</p>
             </div>
-            <div className="form-container">
+            <div className="auth-form-container">
                 {!formSubmitted ? (
-                    <>
-                        <div className="form-step">
-                            <div className="form-group">
-                                <label htmlFor="email">Email:</label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    placeholder="Enter Email"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                />
-                                {errors.email && <p className="error">{errors.email}</p>}
-                            </div>
-
-                            <div className="form-group">
-                                <label htmlFor="password">Password:</label>
-                                <input
-                                    type="password"
-                                    id="password"
-                                    name="password"
-                                    placeholder="Enter Password"
-                                    value={formData.password}
-                                    onChange={handleChange}
-                                />
-                                {errors.password && <p className="error">{errors.password}</p>}
-                            </div>
-
-                            {backendError && <p className="error">{backendError}</p>}
-
-                            <div>
-                                <button onClick={handleSubmit} style={{ marginLeft: "75px", width: "50%" }}>
-                                    Log In
-                                </button>
-                            </div>
+                    <form className="auth-form" onSubmit={handleSubmit}>
+                        <div className="auth-form-group">
+                            <label htmlFor="email">Email:</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Enter Email"
+                                value={formData.email}
+                                onChange={handleChange}
+                            />
+                            <br /><br />
+                            {errors.email && <p className="auth-error">{errors.email}</p>}
                         </div>
 
-                        <div className="login-link">
+                        <div className="auth-form-group">
+                            <label htmlFor="password">Password:</label>
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Enter Password"
+                                value={formData.password}
+                                onChange={handleChange}
+                            />
+                            <br /><br />
+                            {errors.password && <p className="auth-error">{errors.password}</p>}
+                        </div>
+
+                        {backendError && <p className="auth-error">{backendError}</p>}
+
+                        <button type="submit" className="auth-submit-button">
+                            Log In
+                        </button>
+
+                        <div className="auth-login-link">
                             <p>Don't have an account? <a href="/register">Register here</a></p>
                         </div>
-                    </>
+                    </form>
                 ) : (
-                    <div className="success-message">
+                    <div className="auth-success-message">
                         <h2>Login Successful!</h2>
                         <p>Redirecting to the home page...</p>
                     </div>

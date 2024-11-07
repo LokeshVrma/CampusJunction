@@ -19,6 +19,11 @@ const CartSchema = new mongoose.Schema({
         price: {
             type: mongoose.Schema.Types.Decimal128,
             required: true
+        },
+        seller_id: { // Add seller ID here
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User', // Reference to the User model (Seller)
+            required: true
         }
     }],
     total_amount: {

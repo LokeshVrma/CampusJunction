@@ -105,7 +105,7 @@ const loginUser = async (req, res) => {
           maxAge: 3600000 // 1 hour in milliseconds
       });
 
-      res.status(200).json({ message: 'Login successful' });
+      res.status(200).json({ message: 'Login successful', token:token });
   } catch (error) {
       res.status(500).json({ message: 'Internal Server Error', error: error.message });
   }

@@ -1,0 +1,137 @@
+.outer-wrapper {
+    background: linear-gradient(135deg, #006DAA, #B9D6F2, #006DAA);
+    min-height: 100vh; /* Makes the background cover the full viewport height */
+    padding-bottom: 20px;
+  }
+.create-product-page {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 25px;
+    background: #ffffff;
+
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s;
+}
+
+.create-product-page:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Title styling */
+.create-product-page h1 {
+    font-size: 2.2rem;
+    color: #3b3f4c;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Form grid layout */
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: center;
+}
+
+/* Full-width items in grid */
+.full-width {
+    grid-column: 1 / -1;
+}
+
+/* Label styling */
+label {
+    font-size: 1rem;
+    color: #3b3f4c;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Input, textarea, select styling */
+input[type="text"],
+input[type="number"],
+textarea,
+select,
+input[type="file"] {
+    padding: 12px 15px;
+    border: 1px solid #d1d1d1;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #3b3f4c;
+    background-color: #f7f8fa;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Input focus effect */
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #6a82fb;
+    box-shadow: 0 0 8px rgba(106, 130, 251, 0.5);
+    outline: none;
+}
+
+/* Placeholder color */
+input::placeholder,
+textarea::placeholder {
+    color: #9ba7b5;
+    font-size: 0.95rem;
+}
+
+/* Textarea resize control */
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Button styling */
+.full-width button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, #6a82fb, #fc5c7d);
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    grid-column: 1 / -1;
+    margin-top: 20px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+button:hover:not(:disabled) {
+    background-color: #fc5c7d;
+    transform: scale(1.03);
+}
+
+button:disabled {
+    background-color: #c0c4db;
+    cursor: not-allowed;
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 768px) {
+    .create-product-page {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .create-product-page h1 {
+        font-size: 1.8rem;
+    }
+
+    form {
+        grid-template-columns: 1fr;
+    }
+}

@@ -3,10 +3,6 @@
   color: white;
   padding: 1rem 0.5rem;
   text-align: center;
-  position: fixed; /* Ensure the footer is positioned relative to the page */
-  bottom: 0;          /* Stick to the bottom */
-  left: 0;            /* Full-width */
-  right: 0;           /* Full-width */
 }
 
 .footer-content {

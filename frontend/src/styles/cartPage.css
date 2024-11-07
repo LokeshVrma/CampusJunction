@@ -1,0 +1,277 @@
+/* Cart Page Styles */
+.cart-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.6); /* More transparent glass effect */
+    backdrop-filter: blur(15px); /* Enhanced blur effect */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: relative; /* Position relative for button alignment */
+    padding-bottom: 100px; /* Added bottom padding to avoid content overlap */
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.cart-title {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.cart-items {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 80px; /* Add margin to make space for buttons */
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.8); /* Slightly opaque for item cards */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s; /* Smooth transition for hover effect */
+}
+
+/* Ensure consistent spacing */
+.cart-item-name,
+.cart-item-price,
+.cart-item-quantity {
+    min-width: 200px; /* Minimum width for alignment */
+}
+
+.cart-item:hover {
+    background: rgba(255, 255, 255, 0.9); /* Change background on hover */
+}
+
+.cart-item img {
+    width: 100px; /* Adjust size as needed */
+    height: auto;
+    margin-right: 15px;
+    border-radius: 5px; /* Rounded corners for images */
+}
+
+.cart-item-details {
+    flex-grow: 1;
+    margin-right: 15px; /* Space between details and buttons */
+}
+
+.cart-item-name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.cart-item-price {
+    font-size: 16px;
+    color: #555;
+}
+
+.cart-item-quantity {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-input {
+    width: 50px;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.button-container {
+    display: flex; /* Flexbox for button layout */
+    justify-content: space-between; /* Space between buttons */
+    position: absolute; /* Positioning to the bottom */
+    bottom: 20px; /* Adjusted position to lower the buttons */
+    left: 20px; /* Adjust for left padding */
+    right: 20px; /* Adjust for right padding */
+}
+
+.clear-cart-button,
+.checkout-button {
+    background-color: #ff4444; /* Default to clear cart color */
+    color: white;
+    border: none;
+    padding: 12px 20px; /* Adjust padding for uniform size */
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    font-size: 16px;
+    font-weight: bold;
+    flex: 1; /* Equal space for both buttons */
+    margin: 0 5px; /* Space between buttons */
+}
+
+.checkout-button {
+    background-color: #28a745; /* Green for checkout */
+}
+
+.clear-cart-button:hover {
+    background-color: #e63939;
+}
+
+.checkout-button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+.remove-item-button {
+    background-color: #ffcc00;
+    color: #333;
+    border: none;
+    padding: 10px 15px; /* Larger padding for better visibility */
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    font-weight: bold; /* Make the text bold */
+    font-size: 14px; /* Increase font size */
+}
+
+.remove-item-button:hover {
+    background-color: #e6b800;
+}
+
+.cart-summary {
+    display: flex;
+    justify-content: space-between;
+}
+
+.grand-total {
+    display: flex;
+    justify-content: flex-end; /* Align to the right */
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+}
+
+.shipping-address-container {
+    background: rgba(255, 255, 255, 0.85); /* Softer opaque background to blend with the page */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Padding for inner spacing */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    margin: 20px 0; /* Space above and below */
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Light border to define the area */
+}
+
+.shipping-address-title {
+    font-size: 24px; /* Title size */
+    font-weight: bold; /* Bold title */
+    margin-bottom: 15px; /* Space below title */
+    color: #333; /* Dark text color */
+    border-bottom: 2px solid #28a745; /* Green underline for a polished look */
+    padding-bottom: 10px; /* Padding below title */
+}
+
+.shipping-address-form {
+    display: flex;
+    flex-direction: column; /* Stack label and input vertically */
+}
+
+.shipping-address-label {
+    font-size: 16px; /* Label size */
+    margin-bottom: 5px; /* Space below labels */
+    color: #555; /* Gray color for labels */
+}
+
+.shipping-address-input {
+    padding: 12px; /* Inner spacing for a comfortable feel */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 5px; /* Rounded corners for inputs */
+    margin-bottom: 15px; /* Space below inputs */
+    font-size: 16px; /* Input text size */
+    transition: border-color 0.3s; /* Smooth transition for focus */
+}
+
+.shipping-address-input:focus {
+    border-color: #28a745; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+}
+
+.shipping-address-note {
+    font-size: 14px; /* Note text size */
+    color: #777; /* Lighter color for notes */
+    margin-top: 10px; /* Space above note */
+}
+
+.empty-cart-message {
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9; /* Light background color */
+    border: 1px solid #ccc; /* Optional border */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.empty-cart-message h3 {
+    font-size: 24px; /* Larger font for the message */
+    color: #333; /* Darker text color */
+}
+
+.empty-cart-message p {
+    color: #555; /* Lighter text color */
+    margin: 10px 0; /* Spacing between paragraphs */
+}
+
+.start-shopping-button {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    padding: 10px 20px; /* Padding */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    font-size: 16px; /* Increase font size */
+    transition: background-color 0.3s; /* Transition effect */
+}
+
+.start-shopping-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    .cart-item {
+        flex-direction: column; /* Stack items on smaller screens */
+        align-items: flex-start;
+    }
+
+    .cart-item-details {
+        margin-right: 0; /* Remove margin on small screens */
+    }
+
+    .remove-item-button {
+        width: 100%; /* Full-width buttons on mobile */
+        margin-top: 10px; /* Space between buttons */
+    }
+
+    .button-container {
+        flex-direction: column; /* Stack buttons on smaller screens */
+        bottom: 20px; /* Adjust for lower button placement */
+    }
+
+    .clear-cart-button,
+    .checkout-button {
+        width: 100%; /* Full width for mobile */
+        margin: 5px 0; /* Margin on top and bottom */
+    }
+
+    .shipping-address-container {
+        padding: 15px; /* Less padding on smaller screens */
+    }
+
+    .shipping-address-title {
+        font-size: 20px; /* Smaller title on mobile */
+    }
+
+    .shipping-address-label,
+    .shipping-address-input {
+        font-size: 14px; /* Smaller text on mobile */
+    }
+}

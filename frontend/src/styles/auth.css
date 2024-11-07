@@ -1,37 +1,21 @@
-
-
- body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(to right, #b9dff2, #0353a4);
-  margin: 0;
-  padding: 0;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-  /* height: 100vh; */
-  color: #333;
-}
-
-.page-container {
+/* General container styles */
+.auth-page {
   display: flex;
-  /* justify-content: space-between; */
-  /* background-color: #ffffff; */
-  /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); */
-  /* border-radius: 15px; */
-  overflow: hidden;
-  margin-top: 100px;
-  margin-left: 50px;
+  justify-content: center; /* Centers auth-page horizontally */
+  align-items: center;     /* Centers auth-page vertically */
+  height: 100vh;           /* Full viewport height */
+  width: 100%;             /* Full width */
+  max-width: 1200px;       /* Set a max-width if needed */
+  margin: 0 auto;          /* Center the auth-page on the page */
 }
 
-.intro-container, .form-container {
-  width: 40%;
-  padding: 40px 30px;
-  /* padding: 20px; */
-  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  border-radius: 10px; */
+/* Inner containers (split into two columns) */
+.auth-intro, .auth-form-container {
+  flex: 1;                 /* Each container takes up 50% of auth-page */
+  padding: 50px 20px;           /* Add padding for inner spacing */
 }
 
-.intro-container {
+.auth-intro {
   background-color: #006daa;
   color: #ffffff;
   display: flex;
@@ -39,28 +23,60 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  border-radius: 25px 0  0 25px;
-
+  border-radius: 15px 0 0 15px;
+  height: 60vh;
 }
 
-.intro-container h1 {
+.auth-intro h1 {
   font-size: 36px;
   margin-bottom: 20px;
 }
 
-.intro-container p {
+.auth-intro p {
   font-size: 18px;
   line-height: 1.6;
 }
 
-.form-container {
+.auth-form-container {
   background-color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 0 25px 25px 0;
+  border-radius: 0 15px 15px 0;
+  height: 60vh;
+}
 
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.auth-form-group {
+  margin-bottom: 15px;
+}
+
+.auth-form-group label {
+  margin-bottom: 5px;
+  color: #555;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.auth-form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s;
+}
+
+.auth-form-group input:focus {
+  border-color: #007bff;
+  outline: none;
 }
 
 .step-indicator {
@@ -101,7 +117,13 @@
 .form-step {
   display: flex;
   flex-direction: column;
-  width: 72%;
+  width: 80%;
+}
+
+.two-button {
+  display: flex;
+  gap: 1rem;
+  padding-left: 1.75rem;
 }
 
 .form-step label {
@@ -112,13 +134,12 @@
 }
 
 .form-step input {
-  width: 85%;
+  width: 100%;
   padding: 12px;
   margin-bottom: 15px;
   border: 1px solid #ddd;
   border-radius: 10px;
   font-size: 16px;
-  margin-top: 0.25rem;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: border-color 0.3s;
 }
@@ -127,33 +148,10 @@
   border-color: #007bff;
   outline: none;
 }
-input[type="file"]{
-  padding: 5px;
-  width: 89%;
 
-}
-input[type="file"]::file-selector-button {
-  max-width: 150px;
-  border: none;
-  padding: 0.25em 0.25em;
-  border-radius: 7px;
-  background-color: #cbdbeb;
-  transition: 1s;
-}
-
-button {
-  width: 40%;
-  margin-top: 10px;
-}
-
-.two-button {
-  display: flex;
-  padding-left: 1.75rem;
-  gap: 1rem;
-}
-
-.form-step button {
-  padding: 12px 25px;
+.auth-submit-button {
+  width: 80%;
+  padding: 12px;
   background: linear-gradient(to bottom, #061a40, #0353a4);
   color: #fff;
   border: none;
@@ -163,257 +161,64 @@ button {
   transition: background-color 0.3s, transform 0.3s;
 }
 
-.form-step button:hover {
+.auth-submit-button:hover {
   background: linear-gradient(to bottom, #0353a4, #006daa);
   transform: translateY(-2px);
 }
-.login-link {
+
+.auth-login-link {
   text-align: center;
+  margin-top: 15px;
 }
-.login-link a {
+
+.auth-login-link a {
   color: #007bff;
   text-decoration: none;
 }
-.login-link a:hover {
+
+.auth-login-link a:hover {
   text-decoration: underline;
 }
 
-.error {
+.auth-error {
   color: #ff4d4d;
   font-size: 14px;
   margin-top: -10px;
   margin-bottom: 10px;
 }
 
-/* General Mobile Styles */
+/* Responsive Styles */
 @media (max-width: 768px) {
-  body {
-    padding-top: 0;
-    margin: 0;
-    flex-direction: column;
-  
+  .auth-page {
+      flex-direction: column; /* Stacks intro-container and form-container vertically */
   }
 
-  .page-container {
-    display: flex;
-    flex-direction: column;
-    padding-top: 9px;
-    margin: 0;
-    margin-left: 130px;
+  .auth-intro, .auth-form-container {
+      width: 100%;          /* Each container takes up full width on mobile */
+      padding: 10px;        /* Adjust padding for smaller screens */
   }
 
-  .intro-container, .form-container {
-    
-    width: 70%;
-    padding: 20px;
-    margin-bottom: 0;
+  .auth-intro {
+      border-radius: 15px 15px 0 0;
   }
 
-  .intro-container h1 {
-    font-size: 28px;
-    margin-bottom: 15px;
+  .auth-form-container {
+      border-radius: 0 0 15px 15px;
   }
 
-  .intro-container p {
-    font-size: 16px;
-    margin-bottom: 20px;
-
-  }
-.intro-container{
-  border-radius: 25px 25px 0 0;
-  background: linear-gradient(to top, #fff, #0353a4);
-  color: inherit;
-  text-align: center;
-}
-.form-container {
-    border-radius: 0 0  25px 25px;
-    background-color: #fff;
-    align-items: center;
+  .auth-intro h1 {
+      font-size: 28px;
   }
 
-  .step-indicator {
-    align-items: center;
-    width: 85%;
-    margin-bottom: 20px;
+  .auth-intro p {
+      font-size: 16px;
   }
 
-  .circle {
-    width: 40px;
-    height: 40px;
-    font-size: 16px;
+  .auth-form-group input {
+      font-size: 14px;
   }
 
-  .line {
-    height: 3px;
-    background-color: #ddd;
-    margin-top: 2px;
-  }
-
-  .form-step {
-    /* width: 100%; */
-  }
-
-  .form-step label {
-    font-size: 14px;
-  }
-
-  .form-step input {
-    font-size: 14px;
-  }
-
-  button {
-/* width: 100%; */
-    margin-top: 15px;
-  }
-
-  .two-button {
-
-margin-right: 49px;
-
-  }
-
-  .form-step button {
-   width: 100%;
-
-  }
-  .login-link {
-    text-align: center;
-    /* padding-right: 50px; */
-  }
-  input[type="file"]{
-    padding: 8px;
-    width: 89%;
-  
-  }
-
-  input[type="file"]::file-selector-button {
-    max-width: 110px;
-    padding: 0.25em 0.25em;
-  }
-
-  .error {
-    font-size: 12px;
+  .auth-submit-button {
+      width: 100%;
   }
 }
-
-
-/* General Mobile Styles */
-@media (max-width: 485px) {
-  body {
-    padding-top: 0;
-    margin: 0;
-    flex-direction: column;
-
-  }
-
-  .page-container {
-    display: flex;
-    flex-direction: column;
-    width: 98%;
-    /* padding-top: 0; */
-    /* padding-left: 10px; */
-    /* box-shadow: none; */
-    /* border-radius: 0; */
-    /* border-radius: 15px; */
-    margin: 0; /* Reset margin */
-    /* background-color: transparent; */
-  
-  }
-
-  .intro-container, .form-container {
-    width: 85%;
-    padding: 20px;
-    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); */
-    /* box-shadow: none; */
-    /* border-radius: 15px; */
-    border-radius: none;
-    margin-bottom: 0; /* Remove bottom margin */
-
-  }
-
-
-  .intro-container {
-    /* background-color: #236d97; */
-    background: linear-gradient(to top, #fff, #0353a4);
-    /* background-color: inherit; */
-    color: inherit;
-    /* color: #ffffff; */
-    text-align: center;
-  }
-
-  .intro-container h1 {
-    font-size: 24px;
-    margin-bottom: 15px;
-  }
-
-  .intro-container p {
-    font-size: 14px;
-     margin-bottom: 20px;
-  }
-
-  .form-container {
-    background-color: #ffffff;
-    /* background-color: inherit; */
-  }
-
-  .step-indicator {
-    align-items: center;
-    width: 100%;
-    margin-bottom: 20px;
-  }
-
-  .circle {
-    width: 30px;
-    height: 30px;
-    font-size: 14px;
-  }
-
-  .line {
-    height: 3px;
-    background-color: #ddd;
-    margin-top: 2px;
-  }
-
-  .form-step {
-    width: 100%;
-  }
-
-  .form-step label {
-    font-size: 14px;
-  }
-
-  .form-step input {
-    font-size: 14px;
-  }
-
-  button {
-    width: 100%;
-    margin-top: 10px;
-
-  }
-
-  .two-button {
-    margin-right: 49px;
-    
-    gap: 10px;
-  }
-
-  .form-step button {
-    width: 100%;
-  }
-  input[type="file"]{
-    padding: 8px;
-    width: 89%;
-  
-  }
-  input[type="file"]::file-selector-button {
-    max-width: 110px;
-    padding: 0.25em 0.25em;
-  }
-
-  .error {
-    font-size: 12px;
-  }
-}
-
-

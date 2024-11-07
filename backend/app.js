@@ -8,7 +8,11 @@ const authRoutes = require('./routes/auth');
 const marketplaceRoutes = require('./routes/marketplace');
 const cartRoutes = require('./routes/cart');
 const categoryRoutes = require('./routes/categories');
-const userRoutes = require('./routes/users')
+const userRoutes = require('./routes/users');
+const checkoutRoute = require('./routes/checkout');
+const lostAndFoundRoutes = require('./routes/lostandfound');
+const tutorRoutes = require('./routes/tutor');
+const bookingRoutes = require('./routes/booking');
 
 require('dotenv').config();
 
@@ -40,7 +44,11 @@ app.use('/api/auth', authRoutes);
 app.use('/api/marketplace', marketplaceRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/api/categories', categoryRoutes);
-app.use('/api/user', userRoutes)
+app.use('/api/user', userRoutes);
+app.use('/api/checkout', checkoutRoute);
+app.use('/api/lostfound', lostAndFoundRoutes);
+app.use('/api/tutors', tutorRoutes);
+app.use('/api/bookings', bookingRoutes);
 
 app.get('/', (req, res) => {
     res.status(201).json({ message: "Connected to Backend!" });

@@ -1,0 +1,126 @@
+/* HomePage.css */
+.homepage-container {
+    padding: 2rem;
+    text-align: center;
+    background-color: #f3f4f6;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .welcome-section h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+  }
+  
+  .welcome-section p {
+    font-size: 1.2rem;
+    color: #666;
+  }
+  
+  .cta-button {
+    margin-top: 1rem;
+    padding: 0.8rem 1.6rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+  
+  .cta-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .features-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  
+  .feature-card {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 280px;
+    transition: transform 0.3s;
+    text-align: left;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .feature-card h3 {
+    font-size: 1.5rem;
+    color: #007bff;
+    margin-bottom: 0.5rem;
+  }
+  
+  .feature-card p {
+    color: #555;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .feature-link {
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .feature-link:hover {
+    text-decoration: underline;
+  }
+  
+  .testimonials-section {
+    margin-top: 3rem;
+  }
+  
+  .testimonials-section h3 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .testimonial-card {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 1rem;
+    max-width: 300px;
+    display: inline-block;
+    text-align: left;
+  }
+  
+  .testimonial-card p {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .testimonial-card span {
+    font-size: 0.9rem;
+    color: #777;
+    display: block;
+    margin-top: 0.5rem;
+  }
+  
+  .call-to-action-section {
+    margin-top: 3rem;
+    padding: 2rem;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 8px;
+  }
+  
+  .call-to-action-section h3 {
+    font-size: 2rem;
+  }
+  
+  .call-to-action-section p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }

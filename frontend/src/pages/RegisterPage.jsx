@@ -123,12 +123,12 @@ const RegisterPage = () => {
     }, [formSubmitted, navigate]);
 
     return (
-        <div className="page-container">
-            <div className="intro-container">
+        <div className="auth-page">
+            <div className="auth-intro">
                 <h1>Welcome to {Branding()}</h1>
                 <p>Join us today and start your journey. Please complete the registration process below.</p>
             </div>
-            <div className="form-container">
+            <div className="auth-form-container">
                 <div className="step-indicator">
                     <div
                         className={`circle ${step === 1 ? 'active' : ''}`}
@@ -150,7 +150,7 @@ const RegisterPage = () => {
                     <>
                         {step === 1 && (
                             <div className="form-step">
-                                <div className="form-group">
+                                <div className="auth-form-group">
                                     <label htmlFor="name">Name:</label>
                                     <input
                                         type="text"
@@ -160,10 +160,10 @@ const RegisterPage = () => {
                                         value={formData.name}
                                         onChange={handleChange}
                                     />
-                                    {errors.name && <p className="error">{errors.name}</p>}
+                                    {errors.name && <p className="auth-error">{errors.name}</p>}
                                 </div>
 
-                                <div className="form-group">
+                                <div className="auth-form-group">
                                     <label htmlFor="email">Email:</label>
                                     <input
                                         type="email"
@@ -174,10 +174,10 @@ const RegisterPage = () => {
                                         value={formData.email}
                                         onChange={handleChange}
                                     />
-                                    {errors.email && <p className="error">{errors.email}</p>}
+                                    {errors.email && <p className="auth-error">{errors.email}</p>}
                                 </div>
 
-                                <div className="form-group">
+                                <div className="auth-form-group">
                                     <label htmlFor="password">Password:</label>
                                     <input
                                         type="password"
@@ -187,16 +187,16 @@ const RegisterPage = () => {
                                         value={formData.password}
                                         onChange={handleChange}
                                     />
-                                    {errors.password && <p className="error">{errors.password}</p>}
+                                    {errors.password && <p className="auth-error">{errors.password}</p>}
                                 </div>
                                 <div>
-                                    <button style={{ marginLeft: "75px", width: "50%" }} onClick={nextStep}>Next</button>
+                                    <button className='auth-submit-button' style={{ marginLeft: "75px", width: "50%" }} onClick={nextStep}>Next</button>
                                 </div>
                             </div>
                         )}
                         {step === 2 && (
                             <div className="form-step">
-                                <div className="form-group">
+                                <div className="auth-form-group">
                                     <label htmlFor="photo">Upload Photo:</label>
                                     <input
                                         type="file"
@@ -204,10 +204,10 @@ const RegisterPage = () => {
                                         onChange={(e) => setFormData({ ...formData, photo: e.target.files[0] })}
                                         required
                                     />
-                                    {errors.photo && <p className="error">{errors.photo}</p>}
+                                    {errors.photo && <p className="auth-error">{errors.photo}</p>}
                                 </div>
 
-                                <div className="form-group">
+                                <div className="auth-form-group">
                                     <label htmlFor="phone">Phone Number:</label>
                                     <input
                                         type="tel"
@@ -217,10 +217,10 @@ const RegisterPage = () => {
                                         value={formData.phone}
                                         onChange={handleChange}
                                     />
-                                    {errors.phone && <p className="error">{errors.phone}</p>}
+                                    {errors.phone && <p className="auth-error">{errors.phone}</p>}
                                 </div>
 
-                                <div className="form-group">
+                                <div className="auth-form-group">
                                     <label htmlFor="address">Address:</label>
                                     <input
                                         type="text"
@@ -230,7 +230,7 @@ const RegisterPage = () => {
                                         value={formData.address}
                                         onChange={handleChange}
                                     />
-                                    {errors.address && <p className="error">{errors.address}</p>}
+                                    {errors.address && <p className="auth-error">{errors.address}</p>}
                                 </div>
                                 <div className='two-button'>
                                     <button onClick={prevStep}>Back</button>
@@ -240,7 +240,7 @@ const RegisterPage = () => {
                         )}
                         {step === 3 && (
                             <div className="form-step">
-                                <div className="form-group">
+                                <div className="auth-form-group">
                                     <label htmlFor="collegeName">College Name:</label>
                                     <input
                                         type="text"
@@ -250,10 +250,10 @@ const RegisterPage = () => {
                                         value={formData.collegeName}
                                         onChange={handleChange}
                                     />
-                                    {errors.collegeName && <p className="error">{errors.collegeName}</p>}
+                                    {errors.collegeName && <p className="auth-error">{errors.collegeName}</p>}
                                 </div>
 
-                                <div className="form-group">
+                                <div className="auth-form-group">
                                     <label htmlFor="collegeUID">College UID:</label>
                                     <input
                                         type="text"
@@ -263,10 +263,10 @@ const RegisterPage = () => {
                                         value={formData.collegeUID}
                                         onChange={handleChange}
                                     />
-                                    {errors.collegeUID && <p className="error">{errors.collegeUID}</p>}
+                                    {errors.collegeUID && <p className="auth-error">{errors.collegeUID}</p>}
                                 </div>
 
-                                <div className="form-group">
+                                <div className="auth-form-group">
                                     <label htmlFor="idCardPhoto">ID Card Photo:</label>
                                     <input
                                         type="file"
@@ -274,10 +274,10 @@ const RegisterPage = () => {
                                         onChange={(e) => setFormData({ ...formData, idCardPhoto: e.target.files[0] })}
                                         required
                                     />
-                                    {errors.idCardPhoto && <p className="error">{errors.idCardPhoto}</p>}
+                                    {errors.idCardPhoto && <p className="auth-error">{errors.idCardPhoto}</p>}
                                 </div>
 
-                                {backendError && <p className="error">{backendError}</p>}
+                                {backendError && <p className="auth-error">{backendError}</p>}
                                 
                                 <div className='two-button'>
                                     <button onClick={prevStep}>Back</button>
@@ -285,12 +285,12 @@ const RegisterPage = () => {
                                 </div>
                             </div>
                         )}
-                        <div className="login-link">
+                        <div className="auth-login-link">
                             <p>Already have an account? <a href="/login">Login here</a></p>
                         </div>
                     </>
                 ) : (
-                    <div className="success-message">
+                    <div className="auth-success-message">
                         <h2>Registration Successful!</h2>
                         <p>Redirecting to the home page...</p>
                     </div>

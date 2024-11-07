@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext} from 'react';
 import '../styles/ProductCard.css';
+import { CartContext } from '../contexts/CartContext';
 
 const ProductCard = ({ product }) => {
+  const { addToCart } = useContext(CartContext);
   const renderStars = (ratings) => {
     const maxStars = 5;
     const filledStars = Math.floor(ratings);
@@ -33,7 +35,7 @@ const ProductCard = ({ product }) => {
       <div className="rating">
         {renderStars(product.ratings)}
       </div>
-      <button className="add-to-cart">Add to Cart</button>
+      <button className="add-to-cart" onClick={() => addToCart(product)}>Add to Cart</button>
       <button className="wishlist-button">Add to Wishlist</button>
     </div>
   );

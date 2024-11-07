@@ -49,7 +49,7 @@ const addItemToCart = async (req, res) => {
         if (!cart) {
             cart = new Cart({
                 user_id: userId,
-                items: [{ product_id, quantity, price }],
+                items: [{ product_id, quantity, price, seller_id: product.seller }], // Include seller_id here
                 total_amount: price * quantity
             });
         } else {
@@ -58,7 +58,7 @@ const addItemToCart = async (req, res) => {
                 cart.items[itemIndex].quantity += quantity;
                 cart.items[itemIndex].price = price;
             } else {
-                cart.items.push({ product_id, quantity, price });
+                cart.items.push({ product_id, quantity, price, seller_id: product.seller }); // Include seller_id here
             }
             cart.total_amount = calculateTotalAmount(cart.items);
         }
@@ -69,6 +69,7 @@ const addItemToCart = async (req, res) => {
         res.status(500).json({ message: 'Internal server error', error: error.message });
     }
 }
+
 
 const removeItemFromCart = async (req, res) => {
     try {
@@ -96,4 +97,30 @@ const removeItemFromCart = async (req, res) => {
     }
 }
 
-module.exports = { getCart, addItemToCart, removeItemFromCart }
+// Clear Cart Functionality
+const clearCart = async (req, res) => {
+    try {
+        const userId = req.user.userId;
+
+        if (!userId) {
+            return res.status(401).json({ message: 'Unauthorized: Please sign in' });
+        }
+
+        const cart = await Cart.findOne({ user_id: userId });
+
+        if (!cart) {
+            return res.status(404).json({ message: 'Cart not found' });
+        }
+
+        // Clear all items from the cart
+        cart.items = [];
+        cart.total_amount = 0; // Reset the total amount
+
+        await cart.save();
+        res.status(200).json({ message: 'Cart cleared successfully', cart });
+    } catch (error) {
+        res.status(500).json({ message: 'Internal server error', error: error.message });
+    }
+};
+
+module.exports = { getCart, addItemToCart, removeItemFromCart, clearCart }
