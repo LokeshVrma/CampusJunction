@@ -1,0 +1,34 @@
+name: Go CI
+
+on:
+  push:
+    branches: [ main, dev ]  # Run on pushes to main and dev branches
+  pull_request:
+    branches: [ main, dev ]  # Run on PRs to these branches
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: 1.24 # Use the latest stable version
+
+      - name: Cache Go modules
+        uses: actions/cache@v3
+        with:
+          path: ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+
+      - name: Install dependencies
+        run: go mod tidy
+
+      - name: Run Tests
+        run: go test -v ./...
