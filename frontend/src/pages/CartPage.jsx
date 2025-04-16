@@ -6,10 +6,9 @@ import axios from 'axios';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faShoppingCart, faChevronRight } from '@fortawesome/free-solid-svg-icons'; // Added icon
+import { faTrashAlt, faShoppingCart, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import ConfirmationModal from '../components/ConfirmationModal';
 import CheckoutModal from '../components/CheckoutModal';
-import '../styles/cartPage.css';
 
 const CartPage = () => {
     const { cartItems, removeFromCart, clearCart, loading: cartLoading } = useContext(CartContext);
@@ -24,8 +23,8 @@ const CartPage = () => {
     const [city, setCity] = useState('');
     const [zip, setZip] = useState('');
     const [showCheckoutModal, setShowCheckoutModal] = useState(false);
-    const [showAlertModal, setShowAlertModal] = useState(false); // State for alert modal
-    const [alertMessage, setAlertMessage] = useState(''); // State for alert message
+    const [showAlertModal, setShowAlertModal] = useState(false);
+    const [alertMessage, setAlertMessage] = useState('');
     const navigate = useNavigate();
 
     const fetchProducts = async () => {
@@ -48,7 +47,7 @@ const CartPage = () => {
     }, []);
 
     useEffect(() => {
-        const total = cartItems.reduce((acc, item) => acc + parseFloat(item.price.$numberDecimal) * item.quantity, 0);
+        const total = cartItems.reduce((acc, item) => acc + parseFloat(item?.price?.$numberDecimal) * item.quantity, 0);
         setGrandTotal(total);
     }, [cartItems]);
 
@@ -73,11 +72,10 @@ const CartPage = () => {
         setShowClearModal(false);
     };
 
-    // Checkout Functionality
     const handleCheckout = () => {
         if (!user) {
-            setAlertMessage("You need to be logged in to checkout."); // Set alert message
-            setShowAlertModal(true); // Show alert modal
+            setAlertMessage("You need to be logged in to checkout.");
+            setShowAlertModal(true);
             return;
         }
         setShowCheckoutModal(true);
@@ -102,140 +100,207 @@ const CartPage = () => {
             setAlertMessage("Checkout successful! Order ID: " + response.data.orderIds.join(", "));
             clearCart();
             setShowCheckoutModal(false);
-            setShowAlertModal(true); // Show alert modal
+            setShowAlertModal(true);
         } catch (error) {
             console.error("Error during checkout:", error);
             setAlertMessage("Checkout failed. Please try again.");
-            setShowAlertModal(true); // Show alert modal
+            setShowAlertModal(true);
         }
     };
 
     return (
-        <div>
+        <div style={{ fontFamily: "'Segoe UI', sans-serif", backgroundColor: '#f9f9f9', minHeight: '100vh' }}>
             <Navbar />
-            <div className="cart-page">
-                <div className="cart-container">
-                    <h2>Your Cart</h2>
-                    {userLoading || cartLoading || loading ? (
-                        <p>Loading...</p>
-                    ) : (
-                        <>
-                            {cartItems.length > 0 ? (
-                                <div className="cart-items">
-                                    {cartItems.map((item) => (
-                                        <div key={item._id} className="cart-item">
-                                            <h3 className="cart-item-name">{products[item.product_id]?.name || "Product not found"}</h3>
-                                            <p className="cart-item-price">Price: ₹{parseFloat(item.price.$numberDecimal).toFixed(2)}</p>
-                                            <p className="cart-item-quantity">Quantity: {item.quantity}</p>
-                                            <button className="remove-item-button" onClick={() => handleOpenRemoveModal(item.product_id)}>
-                                                <FontAwesomeIcon icon={faTrashAlt} style={{ marginRight: '5px' }} />
-                                                Remove Item
-                                            </button>
-                                        </div>
-                                    ))}
-                                </div>
-                            ) : (
-                                <div className="empty-cart-message">
-                                    <h3>Your cart is empty</h3>
-                                    <p>Looks like you haven't added anything to your cart yet.</p>
-                                    <p>Start shopping now and find amazing products!</p>
-                                    <button className="start-shopping-button" onClick={() => navigate('/products')}>
-                                        <FontAwesomeIcon icon={faShoppingCart} style={{ marginRight: '5px' }} />
-                                        Start Shopping
+            <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '2rem' }}>
+                <h2 style={{ textAlign: 'center', color: '#222', marginBottom: '1.5rem' }}>🛒 Your Cart</h2>
+
+                {(userLoading || cartLoading || loading) ? (
+                    <p style={{ textAlign: 'center' }}>Loading...</p>
+                ) : cartItems.length > 0 ? (
+                    <>
+                        <div style={{ display: 'grid', gap: '1rem' }}>
+                            {cartItems.map(item => (
+                                <div key={item._id} style={{
+                                    background: '#fff',
+                                    padding: '1rem 1.5rem',
+                                    borderRadius: '12px',
+                                    boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    alignItems: 'center'
+                                }}>
+                                    <div>
+                                        <h3 style={{ margin: 0 }}>{products[item.product_id]?.name || "Product not found"}</h3>
+                                        <p style={{ margin: '4px 0' }}>Price: ₹{parseFloat(item?.price?.$numberDecimal).toFixed(2)}</p>
+                                        <p style={{ margin: '4px 0' }}>Quantity: {item.quantity}</p>
+                                    </div>
+                                    <button
+                                        onClick={() => handleOpenRemoveModal(item.product_id)}
+                                        style={{
+                                            backgroundColor: '#ff5c5c',
+                                            border: 'none',
+                                            padding: '0.5rem 1rem',
+                                            color: 'white',
+                                            borderRadius: '8px',
+                                            cursor: 'pointer',
+                                            transition: 'background 0.3s'
+                                        }}
+                                    >
+                                        <FontAwesomeIcon icon={faTrashAlt} style={{ marginRight: '6px' }} />
+                                        Remove
                                     </button>
                                 </div>
-                            )}
-                        </>
-                    )}
-                </div>
+                            ))}
+                        </div>
 
-                <div className="grand-total">
-                    <h3>Grand Total: ₹{grandTotal.toFixed(2)}</h3>
-                </div>
+                        <div style={{
+                            background: '#fff',
+                            marginTop: '2rem',
+                            padding: '1rem 1.5rem',
+                            borderRadius: '12px',
+                            boxShadow: '0 2px 12px rgba(0,0,0,0.06)'
+                        }}>
+                            <h3 style={{ marginBottom: '1rem' }}>📦 Shipping Address</h3>
+                            <form style={{ display: 'grid', gap: '1rem' }}>
+                                <input
+                                    type="text"
+                                    placeholder="House no, Apartment, Colony"
+                                    value={address}
+                                    onChange={(e) => setAddress(e.target.value)}
+                                    style={inputStyle}
+                                />
+                                <input
+                                    type="text"
+                                    placeholder="City"
+                                    value={city}
+                                    onChange={(e) => setCity(e.target.value)}
+                                    style={inputStyle}
+                                />
+                                <input
+                                    type="text"
+                                    placeholder="Zip Code"
+                                    value={zip}
+                                    onChange={(e) => setZip(e.target.value)}
+                                    style={inputStyle}
+                                />
+                                <span style={{ fontSize: '0.9rem', color: '#666' }}>
+                                    Please ensure your address is correct to avoid delivery issues.
+                                </span>
+                            </form>
+                        </div>
 
-                <div className="shipping-address-container">
-                    <h2 className="shipping-address-title">Shipping Address</h2>
-                    <form className="shipping-address-form">
-                        <label className="shipping-address-label" htmlFor="address">Address</label>
-                        <input 
-                            type="text" 
-                            id="address" 
-                            className="shipping-address-input" 
-                            placeholder="House no, Apartment, Colony"
-                            value={address}
-                            onChange={(e) => setAddress(e.target.value)} 
-                        />
-
-                        <label className="shipping-address-label" htmlFor="city">City</label>
-                        <input 
-                            type="text" 
-                            id="city" 
-                            className="shipping-address-input" 
-                            placeholder="City"
-                            value={city}
-                            onChange={(e) => setCity(e.target.value)} 
-                        />
-
-                        <label className="shipping-address-label" htmlFor="zip">Zip Code</label>
-                        <input 
-                            type="text" 
-                            id="zip" 
-                            className="shipping-address-input" 
-                            placeholder="123456"
-                            value={zip}
-                            onChange={(e) => setZip(e.target.value)} 
-                        />
-
-                        <span className="shipping-address-note">Please ensure your address is correct to avoid delivery issues.</span>
-                    </form>
-                </div>
-
-                <div className="button-container">
-                    <button className="clear-cart-button" onClick={handleClearCart}>
-                        <FontAwesomeIcon icon={faTrashAlt} style={{ marginRight: '5px' }} />
-                        Clear Cart
-                    </button>
-                    <button className="checkout-button" onClick={handleCheckout}>
-                        <FontAwesomeIcon icon={faChevronRight} style={{ marginRight: '5px' }} />
-                        Proceed to Checkout
-                    </button>
-                </div>
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            marginTop: '2rem',
+                            flexWrap: 'wrap',
+                            gap: '1rem'
+                        }}>
+                            <h3>Grand Total: ₹{grandTotal.toFixed(2)}</h3>
+                            <div>
+                                <button onClick={handleClearCart} style={secondaryBtnStyle}>
+                                    <FontAwesomeIcon icon={faTrashAlt} style={{ marginRight: '6px' }} />
+                                    Clear Cart
+                                </button>
+                                <button onClick={handleCheckout} style={primaryBtnStyle}>
+                                    <FontAwesomeIcon icon={faChevronRight} style={{ marginRight: '6px' }} />
+                                    Proceed to Checkout
+                                </button>
+                            </div>
+                        </div>
+                    </>
+                ) : (
+                    <div style={{
+                        backgroundColor: '#fff',
+                        borderRadius: '12px',
+                        padding: '2rem',
+                        textAlign: 'center',
+                        boxShadow: '0 2px 12px rgba(0,0,0,0.05)'
+                    }}>
+                        <h3>Your cart is empty</h3>
+                        <p>Looks like you haven't added anything yet.</p>
+                        <button
+                            onClick={() => navigate('/products')}
+                            style={primaryBtnStyle}
+                        >
+                            <FontAwesomeIcon icon={faShoppingCart} style={{ marginRight: '6px' }} />
+                            Start Shopping
+                        </button>
+                    </div>
+                )}
             </div>
 
             {showRemoveModal && (
-                <ConfirmationModal 
+                <ConfirmationModal
                     message="Are you sure you want to remove this item from your cart?"
                     onConfirm={handleConfirmRemove}
                     onCancel={() => setShowRemoveModal(false)}
+                    onClose={() => setShowRemoveModal(false)}
                 />
             )}
 
             {showClearModal && (
-                <ConfirmationModal 
+                <ConfirmationModal
                     message="Are you sure you want to clear your cart?"
                     onConfirm={handleConfirmClearCart}
                     onCancel={() => setShowClearModal(false)}
+                    onClose={() => setShowClearModal(false)}
                 />
             )}
 
             {showCheckoutModal && (
-                <CheckoutModal 
-                    isOpen={showCheckoutModal} 
-                    onClose={() => setShowCheckoutModal(false)} 
-                    onConfirm={confirmCheckout} 
+                <CheckoutModal
+                    isOpen={showCheckoutModal}
+                    onClose={() => setShowCheckoutModal(false)}
+                    onConfirm={confirmCheckout}
+                    onCancel={() => setShowCheckoutModal(false)}
                 />
             )}
 
             {showAlertModal && (
                 <ConfirmationModal
-                    message={alertMessage} 
-                    onClose={() => setShowAlertModal(false)} 
+                    message={alertMessage}
+                    onClose={() => setShowAlertModal(false)}
                 />
             )}
 
             <Footer />
         </div>
     );
+};
+
+// === Styles ===
+const inputStyle = {
+    padding: '0.7rem 1rem',
+    borderRadius: '8px',
+    border: '1px solid #ccc',
+    fontSize: '1rem',
+    width: '100%',
+    boxSizing: 'border-box'
+};
+
+const primaryBtnStyle = {
+    backgroundColor: '#007bff',
+    color: 'white',
+    border: 'none',
+    padding: '0.6rem 1.2rem',
+    marginLeft: '1rem',
+    borderRadius: '8px',
+    cursor: 'pointer',
+    fontWeight: '500',
+    transition: 'all 0.3s ease'
+};
+
+const secondaryBtnStyle = {
+    backgroundColor: '#6c757d',
+    color: 'white',
+    border: 'none',
+    padding: '0.6rem 1.2rem',
+    borderRadius: '8px',
+    cursor: 'pointer',
+    fontWeight: '500',
+    transition: 'all 0.3s ease'
 };
 
 export default CartPage;

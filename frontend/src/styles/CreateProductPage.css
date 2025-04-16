@@ -111,7 +111,8 @@ textarea {
 }
 
 button:hover:not(:disabled) {
-    background-color: #fc5c7d;
+    /* background-color: #fc5c7d; */
+    background-color: #90bcaf;
     transform: scale(1.03);
 }
 

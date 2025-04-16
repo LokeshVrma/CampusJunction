@@ -1,27 +1,98 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import '../styles/confirmationModal.css'; // Ensure this path is correct
 
-const ConfirmationModal = ({ shippingAddress, onConfirm, onCancel }) => {
+const ConfirmationModal = ({ message, onConfirm, onCancel, onClose }) => {
+    const handleClose = () => {
+        if (onClose) {
+            onClose();
+        } else if (onCancel) {
+            onCancel();
+        }
+    };
+
     return (
-        <div className="checkout-modal">
-            <div className="checkout-modal-content">
-                <h2>Confirm Checkout</h2>
-                <p><strong>Shipping Address:</strong> {shippingAddress}</p>
-                <p>Are you sure you want to proceed with the checkout?</p>
-                <div className="modal-buttons">
-                    <button className="modal-button confirm" onClick={onConfirm}>Confirm</button>
-                    <button className="modal-button cancel" onClick={onCancel}>Cancel</button>
+        <div style={backdropStyle}>
+            <div style={modalStyle}>
+                <h3 style={titleStyle}>Confirm Action</h3>
+                <p style={messageStyle}>{message}</p>
+                <div style={buttonContainerStyle}>
+                    {onConfirm && (
+                        <button style={confirmBtnStyle} onClick={onConfirm}>
+                            Yes, Confirm
+                        </button>
+                    )}
+                    <button style={cancelBtnStyle} onClick={handleClose}>
+                        Cancel
+                    </button>
                 </div>
             </div>
         </div>
     );
 };
 
-ConfirmationModal.propTypes = {
-    shippingAddress: PropTypes.string.isRequired,
-    onConfirm: PropTypes.func.isRequired,
-    onCancel: PropTypes.func.isRequired,
+// === Styles ===
+const backdropStyle = {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 1000,
+};
+
+const modalStyle = {
+    backgroundColor: '#fff',
+    borderRadius: '16px',
+    padding: '2rem',
+    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.15)',
+    maxWidth: '420px',
+    width: '90%',
+    textAlign: 'center',
+    animation: 'fadeIn 0.3s ease-out',
+};
+
+const titleStyle = {
+    fontSize: '1.5rem',
+    marginBottom: '1rem',
+    color: '#333',
+};
+
+const messageStyle = {
+    fontSize: '1rem',
+    marginBottom: '1.5rem',
+    color: '#555',
+};
+
+const buttonContainerStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    gap: '1rem',
+    flexWrap: 'wrap',
+};
+
+const confirmBtnStyle = {
+    backgroundColor: '#007bff',
+    color: 'white',
+    border: 'none',
+    padding: '0.6rem 1.2rem',
+    borderRadius: '8px',
+    cursor: 'pointer',
+    fontWeight: '500',
+    transition: 'background 0.3s ease',
+};
+
+const cancelBtnStyle = {
+    backgroundColor: '#e0e0e0',
+    color: '#333',
+    border: 'none',
+    padding: '0.6rem 1.2rem',
+    borderRadius: '8px',
+    cursor: 'pointer',
+    fontWeight: '500',
+    transition: 'background 0.3s ease',
 };
 
 export default ConfirmationModal;

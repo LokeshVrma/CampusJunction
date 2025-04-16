@@ -1,4 +1,4 @@
-body{
+/* body{
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -6,7 +6,7 @@ body{
     background: linear-gradient(135deg, #006DAA, #B9D6F2, #006DAA);
     font-family:'Times New Roman', Times, serif;
     margin: 0;
-}  
+}   */
 
 .container{
     display: flex;

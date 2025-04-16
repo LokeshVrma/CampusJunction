@@ -52,20 +52,36 @@ function LostAndFoundPage() {
                 <button className="lost-and-found-new-notice-button" onClick={() => setIsModalOpen(true)}>
                     + Report a Lost/Found Item
                 </button>
+                
                 <div className="lost-and-found-notice-board">
                     {notices.map(notice => (
                         <div className="lost-and-found-notice-card" key={notice._id}>
                             <h2 className="lost-and-found-notice-title">{notice.itemName}</h2>
                             <p className="lost-and-found-notice-description">{notice.description}</p>
-                            <p className="lost-and-found-contact-info">Contact: {notice.contactInfo}</p>
-                            <p className="lost-and-found-location-info">Location Found: {notice.location}</p>
-                            <p className="lost-and-found-found-by-info">Found By: {notice.foundBy}</p>
-                            <button className="lost-and-found-delete-button" onClick={() => handleDelete(notice._id)}>Delete</button>
-                            <button className="lost-and-found-call-button" onClick={() => window.location.href = `tel:${notice.contactInfo}`}>Call</button>
+                            <p className="lost-and-found-contact-info">📞 {notice.contactInfo}</p>
+                            <p className="lost-and-found-location-info">📍 {notice.location}</p>
+                            <p className="lost-and-found-found-by-info">🔍 Found By: {notice.foundBy}</p>
+                            
+                            {/* Buttons in the same row */}
+                            <div className="lost-and-found-buttons">
+                                <button 
+                                    className="lost-and-found-call-button" 
+                                    onClick={() => window.location.href = `tel:${notice.contactInfo}`}
+                                >
+                                    📞 Call
+                                </button>
+                                <button 
+                                    className="lost-and-found-delete-button" 
+                                    onClick={() => handleDelete(notice._id)}
+                                >
+                                    ❌ Delete
+                                </button>
+                            </div>
                         </div>
                     ))}
                 </div>
 
+                {/* Modal */}
                 {isModalOpen && (
                     <div className="lost-and-found-modal-overlay">
                         <div className="lost-and-found-modal">
@@ -110,14 +126,18 @@ function LostAndFoundPage() {
                                     placeholder="Found By (Your Name)"
                                     required
                                 />
-                                <button className="lost-and-found-submit-button" type="submit">Post Notice</button>
-                                <button
-                                    className="lost-and-found-cancel-button"
-                                    type="button"
-                                    onClick={() => setIsModalOpen(false)}
-                                >
-                                    Cancel
-                                </button>
+
+                                {/* Buttons in the same row */}
+                                <div className="lost-and-found-modal-buttons">
+                                    <button className="lost-and-found-submit-button" type="submit">Post Notice</button>
+                                    <button 
+                                        className="lost-and-found-cancel-button"
+                                        type="button"
+                                        onClick={() => setIsModalOpen(false)}
+                                    >
+                                        Cancel
+                                    </button>
+                                </div>
                             </form>
                         </div>
                     </div>

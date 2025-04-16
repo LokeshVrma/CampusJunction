@@ -1,18 +1,22 @@
 /* General container styles */
 .auth-page {
   display: flex;
-  justify-content: center; /* Centers auth-page horizontally */
-  align-items: center;     /* Centers auth-page vertically */
-  height: 100vh;           /* Full viewport height */
-  width: 100%;             /* Full width */
-  max-width: 1200px;       /* Set a max-width if needed */
-  margin: 0 auto;          /* Center the auth-page on the page */
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
 }
+
 
 /* Inner containers (split into two columns) */
 .auth-intro, .auth-form-container {
-  flex: 1;                 /* Each container takes up 50% of auth-page */
-  padding: 50px 20px;           /* Add padding for inner spacing */
+  flex: 1;
+  padding: 40px 20px;
+  box-sizing: border-box;
 }
 
 .auth-intro {
@@ -51,10 +55,12 @@
   display: flex;
   flex-direction: column;
   width: 80%;
+  gap: 15px;
 }
 
 .auth-form-group {
   margin-bottom: 15px;
+  width: 100%;
 }
 
 .auth-form-group label {
@@ -64,7 +70,7 @@
   font-size: 16px;
 }
 
-.auth-form-group input {
+.auth-form-group input, .form-step input {
   width: 100%;
   padding: 12px;
   border: 1px solid #ddd;
@@ -72,9 +78,10 @@
   font-size: 16px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: border-color 0.3s;
+  box-sizing: border-box;
 }
 
-.auth-form-group input:focus {
+.auth-form-group input:focus, .form-step input:focus {
   border-color: #007bff;
   outline: none;
 }
@@ -117,13 +124,15 @@
 .form-step {
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 100%;
 }
 
 .two-button {
   display: flex;
   gap: 1rem;
-  padding-left: 1.75rem;
+  justify-content: center;
+  width: 100%;
+  
 }
 
 .form-step label {
@@ -133,24 +142,8 @@
   font-size: 16px;
 }
 
-.form-step input {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  font-size: 16px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: border-color 0.3s;
-}
-
-.form-step input:focus {
-  border-color: #007bff;
-  outline: none;
-}
-
 .auth-submit-button {
-  width: 80%;
+  width: 100%;
   padding: 12px;
   background: linear-gradient(to bottom, #061a40, #0353a4);
   color: #fff;
@@ -159,6 +152,7 @@
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s, transform 0.3s;
+  text-align: center;
 }
 
 .auth-submit-button:hover {
@@ -183,19 +177,19 @@
 .auth-error {
   color: #ff4d4d;
   font-size: 14px;
-  margin-top: -10px;
+ 
   margin-bottom: 10px;
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
   .auth-page {
-      flex-direction: column; /* Stacks intro-container and form-container vertically */
+      flex-direction: column;
   }
 
   .auth-intro, .auth-form-container {
-      width: 100%;          /* Each container takes up full width on mobile */
-      padding: 10px;        /* Adjust padding for smaller screens */
+      width: 100%;
+      padding: 20px;
   }
 
   .auth-intro {
@@ -214,7 +208,7 @@
       font-size: 16px;
   }
 
-  .auth-form-group input {
+  .auth-form-group input, .form-step input {
       font-size: 14px;
   }
 
