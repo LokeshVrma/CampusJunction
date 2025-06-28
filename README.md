@@ -48,11 +48,14 @@ CampusJunction is a web application for college students to buy and sell product
     EMAIL_USER=your_email@gmail.com
     EMAIL_PASS=your_email_password
     NODE_ENV=development
+    CLOUDINARY_CLOUD_NAME=secret
+    CLOUDINARY_API_KEY=secret
+    CLOUDINARY_API_SECRET=secret
     ```
 
 4. **Run the backend server**:
     ```sh
-    npm start
+    cd backend && node --watch app.js
     ```
 
 ### Frontend Setup
