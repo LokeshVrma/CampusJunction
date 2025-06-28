@@ -56,8 +56,6 @@ const addProduct = async (req, res) => {
     }
 };
 
-
-
 const getProduct = async (req, res) => {
     try {
         const products = await Product.find(); // Fetch all products

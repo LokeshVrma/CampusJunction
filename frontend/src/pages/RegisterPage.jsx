@@ -124,6 +124,7 @@ const RegisterPage = () => {
 
     return (
         <div className="auth-page">
+            
             <div className="auth-intro">
                 <h1>Welcome to {Branding()}</h1>
                 <p>Join us today and start your journey. Please complete the registration process below.</p>
@@ -233,8 +234,8 @@ const RegisterPage = () => {
                                     {errors.address && <p className="auth-error">{errors.address}</p>}
                                 </div>
                                 <div className='two-button'>
-                                    <button onClick={prevStep}>Back</button>
-                                    <button onClick={nextStep}>Next</button>
+                                    <button className="auth-submit-button"onClick={prevStep}>Back</button>
+                                    <button className="auth-submit-button" onClick={nextStep}>Next</button>
                                 </div>
                             </div>
                         )}

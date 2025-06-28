@@ -41,7 +41,7 @@ const LoginPage = () => {
     <p class="flex justify-center mt-6 text-sm text-slate-600">
       Don&apos;t have an account?
       
-      <a href="/signup" class="ml-1 text-sm font-semibold text-slate-700 underline">
+      <a href="/signupx" class="ml-1 text-sm font-semibold text-slate-700 underline">
         Sign Up
       </a>
     </p>

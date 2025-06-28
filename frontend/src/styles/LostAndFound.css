@@ -1,168 +1,231 @@
+/* General Page Styling */
 .lost-and-found-page {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 20px;
-    font-family: 'Poppins', sans-serif; /* Use the Poppins font for consistency */
-    background-color: #f7f9fc;
-    border-radius: 8px;
-}
-
-.lost-and-found-title {
+    padding: 30px;
+    font-family: 'Poppins', sans-serif;
     text-align: center;
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 20px;
 }
 
+/* Title */
+.lost-and-found-title {
+    font-size: 2.4rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 25px;
+}
+
+/* Report Button */
 .lost-and-found-new-notice-button {
-    display: block;
-    width: 250px; /* Increased width for better appearance */
-    padding: 12px; /* Increased padding */
-    margin: 0 auto 20px;
-    background-color: #007bff;
-    color: #fff;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
     border: none;
-    border-radius: 5px; /* Slightly rounded corners */
+    border-radius: 8px;
+    font-size: 1.2rem;
     cursor: pointer;
-    font-size: 1.1rem; /* Increased font size */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Added transform for hover effect */
+    transition: all 0.3s ease;
 }
 
 .lost-and-found-new-notice-button:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px); /* Lift effect on hover */
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #0056b3, #004494);
 }
 
+/* Notice Board */
 .lost-and-found-notice-board {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
     justify-content: center;
+    margin-top: 25px;
 }
 
+/* ✨ Glassmorphic Notice Cards ✨ */
 .lost-and-found-notice-card {
-    width: 100%;
-    max-width: 350px;
+    background: rgba(255, 255, 255, 0.2);
     padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .lost-and-found-notice-card:hover {
-    transform: scale(1.03);
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
 
 .lost-and-found-notice-title {
     font-size: 1.5rem;
+    font-weight: 600;
     color: #007bff;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .lost-and-found-notice-description {
     color: #555;
+    font-size: 1rem;
+    margin-bottom: 15px;
 }
 
-.lost-and-found-contact-info, .lost-and-found-location-info {
-    color: #777;
-    font-size: 0.9rem;
+.lost-and-found-contact-info,
+.lost-and-found-location-info,
+.lost-and-found-found-by-info {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 5px;
 }
 
-/* Modal Styling */
+/* ✨ Call & Delete Buttons - Modern Look ✨ */
+.lost-and-found-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.lost-and-found-delete-button,
+.lost-and-found-call-button {
+    flex: 1;
+    padding: 10px 0;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+/* Delete Button */
+.lost-and-found-delete-button {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+}
+
+.lost-and-found-delete-button:hover {
+    background: linear-gradient(135deg, #c0392b, #a83226);
+    transform: translateY(-2px);
+}
+
+/* Call Button */
+.lost-and-found-call-button {
+    background: linear-gradient(135deg, #28a745, #218838);
+    color: white;
+}
+
+.lost-and-found-call-button:hover {
+    background: linear-gradient(135deg, #218838, #19672c);
+    transform: translateY(-2px);
+}
+
+/* ✨ Modern Modal Styling ✨ */
 .lost-and-found-modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 10;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-in-out;
 }
 
 .lost-and-found-modal {
-    width: 100%;
-    max-width: 500px;
-    background: #fff;
+    width: 90%;
+    max-width: 450px;
+    background: rgba(255, 255, 255, 0.2);
     padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    animation: slideIn 0.3s ease-in-out;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 .lost-and-found-modal h2 {
-    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+    color: #2c3e50;
+}
+
+/* Form Inputs */
+.lost-and-found-form-input,
+.lost-and-found-form-textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    transition: 0.2s ease-in-out;
     color: #333;
 }
 
-.lost-and-found-form-input, .lost-and-found-form-textarea {
-    width: 90%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
+.lost-and-found-form-input:focus,
+.lost-and-found-form-textarea:focus {
+    border-color: #007bff;
+    background: white;
+    outline: none;
 }
 
+/* Textarea */
 .lost-and-found-form-textarea {
     resize: vertical;
-    min-height: 80px;
+    min-height: 90px;
 }
 
-.lost-and-found-submit-button, .lost-and-found-cancel-button {
-    width: 95%;
-    padding: 10px;
+/* ✨ Modal Buttons - Same Row ✨ */
+.lost-and-found-modal-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+}
+
+.lost-and-found-submit-button,
+.lost-and-found-cancel-button {
+    flex: 1;
+    padding: 12px;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+/* Submit Button */
 .lost-and-found-submit-button {
-    background-color: #28a745;
+    background: linear-gradient(135deg, #28a745, #218838);
     color: white;
 }
 
 .lost-and-found-submit-button:hover {
-    background-color: #218838;
+    background: linear-gradient(135deg, #218838, #19672c);
+    transform: translateY(-2px);
 }
 
+/* Cancel Button */
 .lost-and-found-cancel-button {
-    margin-top: 10px;
-    background-color: #dc3545;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
     color: white;
 }
 
 .lost-and-found-cancel-button:hover {
-    background-color: #c82333;
-}
-
-.lost-and-found-delete-button, .lost-and-found-call-button {
-    margin-top: 10px;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.lost-and-found-delete-button {
-    background-color: #dc3545;
-    color: white;
-}
-
-.lost-and-found-delete-button:hover {
-    background-color: #c82333;
-}
-
-.lost-and-found-call-button {
-    background-color: #007bff;
-    color: white;
-}
-
-.lost-and-found-call-button:hover {
-    background-color: #0056b3;
+    background: linear-gradient(135deg, #c0392b, #a83226);
+    transform: translateY(-2px);
 }

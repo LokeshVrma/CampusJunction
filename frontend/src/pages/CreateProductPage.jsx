@@ -23,6 +23,7 @@ function CreateProductPage() {
     const fetchCategories = async () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/categories`);
+        
         setCategories(response.data);
       } catch (error) {
         console.error('Error fetching categories:', error);
@@ -53,8 +54,10 @@ function CreateProductPage() {
     }
 
     try {
+  //  Fetch token from cookies
+       
       await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/marketplace/products`, formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
+        withCredentials: true
       });
       alert('Product created successfully!');
       navigate('/products');

@@ -5,6 +5,7 @@ const User = require('../models/User'); // Module for User model
 require('dotenv').config();              // Load environment variables from .env file
 const cloudinary = require('cloudinary').v2;
 const fs = require('fs');
+const { log } = require('console');
 
 
 const registerUser = async (req, res) => {
@@ -80,9 +81,8 @@ const updateUserRoleToSeller = async (userId) => {
 const loginUser = async (req, res) => {
   try {
       const { email, password } = req.body;
-
       // Find the user with the given email and ensure they are verified
-      const user = await User.findOne({ email });
+      const user = await User.findOne({ email:email });
 
       if (!user) {
           return res.status(400).json({ message: 'Invalid email or email not verified' });

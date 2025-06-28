@@ -78,6 +78,7 @@ const LoginPage = () => {
     }, [formSubmitted, navigate]);
 
     return (
+        
         <div className="auth-page">
             <div className="auth-intro">
                 <h1>Welcome to {Branding()}</h1>
