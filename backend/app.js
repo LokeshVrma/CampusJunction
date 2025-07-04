@@ -18,11 +18,11 @@ require('dotenv').config();
 
 const app = express();
 
-const PORT = process.env.PORT || 5000;
+const PORT =  5000;
 
 // Middleware
 app.use(cors({
-    origin: ['http://localhost:3000'],
+    origin: ['http://localhost:3000' , process.env.FRONTEND_URL], 
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
@@ -56,4 +56,12 @@ app.get('/', (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`Server has started at ${PORT}`);
+});
+
+app.get('/health', (req,res) => {
+    res.status(200).json({status:'UP', message: 'Health check passed'})
+});
+
+app.get('/live', (req,res) =>{
+    res.status(200).json({status: 'LIVE', message: 'App is alive and running'})
 });

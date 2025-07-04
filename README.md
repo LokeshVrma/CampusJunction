@@ -41,13 +41,11 @@ CampusJunction is a web application for college students to buy and sell product
 
 3. **Create a `.env` file** in the root directory and add the following variables:
     ```env
-    PORT=5000
     MONGO_URI=your_mongo_db_connection_string
     JWT_SECRET=your_jwt_secret
     EMAIL_SERVICE=gmail
     EMAIL_USER=your_email@gmail.com
     EMAIL_PASS=your_email_password
-    NODE_ENV=development
     CLOUDINARY_CLOUD_NAME=secret
     CLOUDINARY_API_KEY=secret
     CLOUDINARY_API_SECRET=secret
